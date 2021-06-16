@@ -1,0 +1,498 @@
+################################################################################################################
+### R script for: Global phylogenetic analysis reveals multiple origins and functions of genital mutilations ###
+################################################################################################################
+
+### ancestral state reconstructions of GM for individual language families ###
+
+library (phytools)
+
+setwd ("F:/GM_reviews/anc_subtrees")
+
+
+### Austronesian ###
+
+subtree_aus <- read.nexus ("AUS.nex")
+subdata_aus <- read.csv ("sample-gray-et-al.---spt.csv", header=TRUE, row.names=1)
+
+subtree_aus_cons <- ls.consensus (subtree_aus) # create a consensus tree
+subtree_aus_red <- subset (subtree_aus, Nnode(subtree_aus)==81) # create a subset of only those trees that have the same number of nodes  
+subtree_aus_red # 783 trees
+
+
+### clitoridectomy ###
+
+{
+   
+clit <- setNames (subdata_aus[,2], rownames(subdata_aus))
+aus_clit <- make.simmap (subtree_aus_red, clit, model="ARD", Q="empirical")
+aus_clit_pd <- summary (aus_clit, consensus.tree=subtree_aus_cons)
+
+
+   cols <- setNames (c("gray85","turquoise2"), levels(as.factor(clit)))
+   
+   plot (aus_clit_pd,
+         offset=0.5,
+         fsize=0.6,
+         lwd=1,
+         cex=c(0.3,0.3),
+         colors=cols
+   )
+   
+   add.simmap.legend (x=0,
+                      y=80,
+                      colors=setNames(c("turquoise2", "gray85"),
+                                      c("present", "absent")),
+                      prompt=FALSE,
+                      vertical=TRUE,
+                      shape="circle",
+                      cex=0.3
+   )
+
+}
+
+# do the same analysis but for the maximum credibility tree
+
+subtree_aus_cred <- read.tree ("austronesian.pruned.orignomenclature.tre")
+
+clit <- setNames (subdata_aus[,2], rownames(subdata_aus))
+aus_clit_cred <- make.simmap (subtree_aus_cred, clit, model="ARD", Q="empirical", nsim=1000)
+aus_clit_cred_pd <- summary (aus_clit_cred)
+
+cols <- setNames (c("gray85","turquoise2"), levels(as.factor(clit)))
+
+plot (aus_clit_cred_pd,
+      offset=0.5,
+      fsize=0.6,
+      lwd=1,
+      cex=c(0.3,0.3),
+      colors=cols
+)
+
+add.simmap.legend (x=0,
+                   y=80,
+                   colors=setNames(c("turquoise2", "gray85"),
+                                   c("present", "absent")),
+                   prompt=FALSE,
+                   vertical=TRUE,
+                   shape="circle",
+                   cex=0.3
+)
+
+
+### MGM ###
+
+subtree_aus_red_780 <- subtree_aus_red[-c(394,402,474)] # first remove three problematic trees for mapping MGM
+
+{
+   
+   MGM <- setNames (subdata_aus[,3], rownames(subdata_aus))
+   aus_MGM <- make.simmap (subtree_aus_red_780, MGM, model="ARD", Q="empirical")
+   aus_MGM_pd <- summary (aus_MGM, consensus.tree=subtree_aus_cons)
+   
+   
+   cols <- setNames (c("gray85","red1"), levels(as.factor(MGM)))
+   
+   plot (aus_MGM_pd,
+         offset=0.5,
+         fsize=0.6,
+         lwd=1,
+         cex=c(0.3,0.3),
+         colors=cols
+   )
+   
+   add.simmap.legend (x=0,
+                      y=80,
+                      colors=setNames(c("red1", "gray85"),
+                                      c("present", "absent")),
+                      prompt=FALSE,
+                      vertical=TRUE,
+                      shape="circle",
+                      cex=0.3
+   )
+ 
+}
+
+# do the same analysis but for the maximum credibility tree
+
+MGM <- setNames (subdata_aus[,3], rownames(subdata_aus))
+aus_MGM_cred <- make.simmap (subtree_aus_cred, MGM, model="ARD", Q="empirical", nsim=1000)
+aus_MGM_cred_pd <- summary (aus_MGM_cred)
+
+cols <- setNames (c("gray85","red1"), levels(as.factor(MGM)))
+
+plot (aus_MGM_cred_pd,
+      offset=0.5,
+      fsize=0.6,
+      lwd=1,
+      cex=c(0.3,0.3),
+      colors=cols
+)
+
+add.simmap.legend (x=0,
+                   y=80,
+                   colors=setNames(c("red1", "gray85"),
+                                   c("present", "absent")),
+                   prompt=FALSE,
+                   vertical=TRUE,
+                   shape="circle",
+                   cex=0.3
+)
+
+
+### circumcision ###
+
+{
+   
+   cir <- setNames (subdata_aus[,4], rownames(subdata_aus))
+   aus_cir <- make.simmap (subtree_aus_red, cir, model="ARD", Q="empirical")
+   aus_cir_pd <- summary (aus_cir, consensus.tree=subtree_aus_cons)
+   
+   
+   cols <- setNames (c("gray85","gold"), levels(as.factor(cir)))
+   
+   plot (aus_cir_pd,
+         offset=0.5,
+         fsize=0.6,
+         lwd=1,
+         cex=c(0.3,0.3),
+         colors=cols
+   )
+   
+   add.simmap.legend (x=0,
+                      y=80,
+                      colors=setNames(c("gold", "gray85"),
+                                      c("present", "absent")),
+                      prompt=FALSE,
+                      vertical=TRUE,
+                      shape="circle",
+                      cex=0.3
+   )
+   
+}
+
+# do the same analysis but for the maximum credibility tree
+
+cir <- setNames (subdata_aus[,4], rownames(subdata_aus))
+aus_cir_cred <- make.simmap (subtree_aus_cred, cir, model="ARD", Q="empirical", nsim=1000)
+aus_cir_cred_pd <- summary (aus_cir_cred)
+
+cols <- setNames (c("gray85","gold"), levels(as.factor(cir)))
+
+plot (aus_cir_cred_pd,
+      offset=0.5,
+      fsize=0.6,
+      lwd=1,
+      cex=c(0.3,0.3),
+      colors=cols
+)
+
+add.simmap.legend (x=0,
+                   y=80,
+                   colors=setNames(c("gold", "gray85"),
+                                   c("present", "absent")),
+                   prompt=FALSE,
+                   vertical=TRUE,
+                   shape="circle",
+                   cex=0.3
+)
+
+
+### superincision ###
+
+{
+   
+   sup <- setNames (subdata_aus[,5], rownames(subdata_aus))
+   aus_sup <- make.simmap (subtree_aus_red, sup, model="ARD", Q="empirical")
+   aus_sup_pd <- summary (aus_sup, consensus.tree=subtree_aus_cons)
+   
+   
+   cols <- setNames (c("gray85","red4"), levels(as.factor(sup)))
+   
+   plot (aus_sup_pd,
+         offset=0.5,
+         fsize=0.6,
+         lwd=1,
+         cex=c(0.3,0.3),
+         colors=cols
+   )
+   
+   add.simmap.legend (x=0,
+                      y=80,
+                      colors=setNames(c("red4", "gray85"),
+                                      c("present", "absent")),
+                      prompt=FALSE,
+                      vertical=TRUE,
+                      shape="circle",
+                      cex=0.3
+   )
+   
+}
+
+# do the same analysis but for the maximum credibility tree
+
+sup <- setNames (subdata_aus[,5], rownames(subdata_aus))
+aus_sup_cred <- make.simmap (subtree_aus_cred, sup, model="ARD", Q="empirical", nsim=1000)
+aus_sup_cred_pd <- summary (aus_sup_cred)
+
+cols <- setNames (c("gray85","red4"), levels(as.factor(sup)))
+
+plot (aus_sup_cred_pd,
+      offset=0.5,
+      fsize=0.6,
+      lwd=1,
+      cex=c(0.3,0.3),
+      colors=cols
+)
+
+add.simmap.legend (x=0,
+                   y=80,
+                   colors=setNames(c("red4", "gray85"),
+                                   c("present", "absent")),
+                   prompt=FALSE,
+                   vertical=TRUE,
+                   shape="circle",
+                   cex=0.3
+)
+
+
+### Bantu ###
+
+subtree_ban <- read.nexus ("BAN.nex")
+subdata_ban <- read.csv ("sample-grollemund---spt.csv", header=TRUE, row.names=1)
+
+subtree_ban_cons <- ls.consensus (subtree_ban)
+
+### FGM ###
+
+{
+
+FGM <- setNames (subdata_ban[,2], rownames(subdata_ban))
+ban_FGM <- make.simmap (subtree_ban, FGM, model="ARD", Q="empirical")
+ban_FGM_pd <- summary (ban_FGM, consensus.tree=subtree_ban_cons)
+
+
+cols <- setNames (c("gray85","blue"), levels(as.factor(FGM)))
+
+plot (ban_FGM_pd,
+      offset=0.5,
+      fsize=0.6,
+      lwd=1,
+      cex=c(0.3,0.3),
+      colors=cols
+)
+
+add.simmap.legend (x=0,
+                   y=85,
+                   colors=setNames(c("blue", "gray85"),
+                                   c("present", "absent")),
+                   prompt=FALSE,
+                   vertical=TRUE,
+                   shape="circle",
+                   cex=0.3
+)
+
+}
+
+
+### clitoridectomy ###
+
+{
+   
+clit <- setNames (subdata_ban[,3], rownames(subdata_ban))
+ban_clit <- make.simmap (subtree_ban, clit, model="ARD", Q="empirical")
+ban_clit_pd <- summary (ban_clit, consensus.tree=subtree_ban_cons)
+
+
+cols <- setNames (c("gray85","turquoise2"), levels(as.factor(clit)))
+
+plot (ban_clit_pd,
+      offset=0.5,
+      fsize=0.6,
+      lwd=1,
+      cex=c(0.3,0.3),
+      colors=cols
+)
+
+add.simmap.legend (x=0,
+                   y=85,
+                   colors=setNames(c("turquoise2", "gray85"),
+                                   c("present", "absent")),
+                   prompt=FALSE,
+                   vertical=TRUE,
+                   shape="circle",
+                   cex=0.3
+)
+
+}
+
+
+### excision ###
+
+{
+   
+exc <- setNames (subdata_ban[,4], rownames(subdata_ban))
+ban_exc <- make.simmap (subtree_ban, exc, model="ARD", Q="empirical")
+ban_exc_pd <- summary (ban_exc, consensus.tree=subtree_ban_cons)
+
+
+cols <- setNames (c("gray85","turquoise4"), levels(as.factor(exc)))
+
+plot (ban_exc_pd,
+      offset=0.5,
+      fsize=0.6,
+      lwd=1,
+      cex=c(0.3,0.3),
+      colors=cols
+)
+
+add.simmap.legend (x=0,
+                   y=85,
+                   colors=setNames(c("turquoise4", "gray85"),
+                                   c("present", "absent")),
+                   prompt=FALSE,
+                   vertical=TRUE,
+                   shape="circle",
+                   cex=0.3
+)
+
+}
+
+
+### circumcision ###
+
+{
+   
+   cir <- setNames (subdata_ban[,5], rownames(subdata_ban))
+   ban_cir <- make.simmap (subtree_ban, cir, model="ARD", Q="empirical")
+   ban_cir_pd <- summary (ban_cir, consensus.tree=subtree_ban_cons)
+   
+   
+   cols <- setNames (c("gray85","gold"), levels(as.factor(cir)))
+   
+   plot (ban_cir_pd,
+         offset=0.5,
+         fsize=0.6,
+         lwd=1,
+         cex=c(0.3,0.3),
+         colors=cols
+   )
+   
+   add.simmap.legend (x=0,
+                      y=85,
+                      colors=setNames(c("gold", "gray85"),
+                                      c("present", "absent")),
+                      prompt=FALSE,
+                      vertical=TRUE,
+                      shape="circle",
+                      cex=0.3
+   )
+   
+}
+
+
+### MGM ###
+
+{
+   
+   MGM <- setNames (subdata_ban[,6], rownames(subdata_ban))
+   ban_MGM <- make.simmap (subtree_ban, MGM, model="ARD", Q="empirical")
+   ban_MGM_pd <- summary (ban_MGM, consensus.tree=subtree_ban_cons)
+   
+   
+   cols <- setNames (c("gray85","red1"), levels(as.factor(MGM)))
+   
+   plot (ban_MGM_pd,
+         offset=0.5,
+         fsize=0.6,
+         lwd=1,
+         cex=c(0.3,0.3),
+         colors=cols
+   )
+   
+   add.simmap.legend (x=0,
+                      y=85,
+                      colors=setNames(c("red1", "gray85"),
+                                      c("present", "absent")),
+                      prompt=FALSE,
+                      vertical=TRUE,
+                      shape="circle",
+                      cex=0.3
+   )
+   
+}
+
+
+### Indo-European ###
+
+subtree_ie <- read.nexus ("IE.nex")
+subdata_ie <- read.csv ("sample-bouckaert---spt.csv", header=TRUE, row.names=1)
+
+subtree_ie_cons <- ls.consensus (subtree_ie)
+
+
+### clitoridectomy ###
+
+{
+   
+   clit <- setNames (subdata_ie[,2], rownames(subdata_ie))
+   ie_clit <- make.simmap (subtree_ie, clit, model="ARD", Q="empirical")
+   ie_clit_pd <- summary (ie_clit, consensus.tree=subtree_ie_cons)
+   
+   
+   cols <- setNames (c("gray85","turquoise2"), levels(as.factor(clit)))
+   
+   plot (ie_clit_pd,
+         offset=0.5,
+         fsize=0.6,
+         lwd=1,
+         cex=c(0.3,0.3),
+         colors=cols
+   )
+   
+   add.simmap.legend (x=0,
+                      y=30,
+                      colors=setNames(c("turquoise2", "gray85"),
+                                      c("present", "absent")),
+                      prompt=FALSE,
+                      vertical=TRUE,
+                      shape="circle",
+                      cex=0.3
+   )
+   
+}
+
+
+### circumcision ### 
+
+{
+   
+   cir <- setNames (subdata_ie[,3], rownames(subdata_ie))
+   ie_cir <- make.simmap (subtree_ie, cir, model="ARD", Q="empirical")
+   ie_cir_pd <- summary (ie_cir, consensus.tree=subtree_ie_cons)
+   
+   
+   cols <- setNames (c("gray85","gold"), levels(as.factor(cir)))
+   
+   plot (ie_cir_pd,
+         offset=0.5,
+         fsize=0.6,
+         lwd=1,
+         cex=c(0.3,0.3),
+         colors=cols
+   )
+   
+   add.simmap.legend (x=0,
+                      y=30,
+                      colors=setNames(c("gold", "gray85"),
+                                      c("present", "absent")),
+                      prompt=FALSE,
+                      vertical=TRUE,
+                      shape="circle",
+                      cex=0.3
+   )
+   
+}
+
+
+###################################
+###################################
