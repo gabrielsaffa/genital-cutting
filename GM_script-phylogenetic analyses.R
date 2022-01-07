@@ -18,7 +18,6 @@ GM_EA_data <- read.csv ("GM_EA_imputed.csv", header=TRUE, row.names=1)
 GM_EA_tree <- read.tree ("SPT.EA.tre")
 
 name.check (GM_EA_tree,GM_EA_data) # check which populations are in the tree but not in the data and remove them; we remove those populations that have missing data for any of the outcomes
-
 GM_EA_tree <- drop.tip (GM_EA_tree, tip=c("Abron","Amis","Aweti","Batanga","Bunun","Burarra","Bwaidoka","Creek","Dobuan","Guaymi",              
                                           "Ho","Huastec","Kachari","Kaqchikel","Karbi","Kariyarra","Kim_Mun","Koronadal_Blaan",
                                           "Kui","Kunda","Lele","Mazatec","Mbala_Ivukuna","Mbugwe","Mixtec","Miyako","Molima",
@@ -132,7 +131,6 @@ sim_FGM <- make.simmap (GM_EA_tree, FGM, model="ARD", Q="empirical", nsim=1000, 
 sim_FGM_pd <- summary (sim_FGM)
 
 cols <- setNames (c("gray85","blue"), levels(as.factor(FGM)))
-
 plot (sim_FGM_pd,
       offset=1.0,
       fsize=0.2,
@@ -159,7 +157,6 @@ sim_clit <- make.simmap (GM_EA_tree, clit, model="ARD", Q="empirical", nsim=1000
 sim_clit_pd <- summary (sim_clit)
 
 cols <- setNames (c("gray85","turquoise2"), levels(as.factor(clit)))
-
 plot (sim_clit_pd,
       offset=1.0,
       fsize=0.2,
@@ -186,7 +183,6 @@ sim_exc <- make.simmap (GM_EA_tree, exc, model="ARD", Q="empirical", nsim=1000, 
 sim_exc_pd <- summary (sim_exc)
 
 cols <- setNames (c("gray85","turquoise4"), levels(as.factor(exc)))
-
 plot (sim_exc_pd,
       offset=1.0,
       fsize=0.2,
@@ -213,7 +209,6 @@ sim_inf <- make.simmap (GM_EA_tree, inf, model="ARD", Q="empirical", nsim=1000, 
 sim_inf_pd <- summary (sim_inf)
 
 cols <- setNames (c("gray85","dodgerblue4"), levels(as.factor(inf)))
-
 plot (sim_inf_pd,
       offset=1.0,
       fsize=0.2,
@@ -240,7 +235,6 @@ sim_MGM <- make.simmap (GM_EA_tree, MGM, model="ARD", Q="empirical", nsim=1000, 
 sim_MGM_pd <- summary (sim_MGM)
 
 cols <- setNames (c("gray85","red1"), levels(as.factor(MGM)))
-
 plot (sim_MGM_pd,
       offset=1.0,
       fsize=0.2,
@@ -267,7 +261,6 @@ sim_cir <- make.simmap (GM_EA_tree, cir, model="ARD", Q="empirical", nsim=1000, 
 sim_cir_pd <- summary (sim_cir)
 
 cols <- setNames (c("gray85","gold"), levels(as.factor(cir)))
-
 plot (sim_cir_pd,
       offset=1.0,
       fsize=0.2,
@@ -294,7 +287,6 @@ sim_sup <- make.simmap (GM_EA_tree, sup, model="ARD", Q="empirical", nsim=1000, 
 sim_sup_pd <- summary (sim_sup)
 
 cols <- setNames (c("gray85","red4"), levels(as.factor(sup)))
-
 plot (sim_sup_pd,
       offset=1.0,
       fsize=0.2,
@@ -344,7 +336,6 @@ fit3 <- fitPagel (GM_EA_tree, x=FGM, y=dist, model="ARD", dep.var="y") # transit
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -352,7 +343,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -382,7 +372,6 @@ fit3 <- fitPagel (GM_EA_tree, x=FGM, y=sex_norms, model="ARD", dep.var="y") # tr
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -390,7 +379,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -420,7 +408,6 @@ fit3 <- fitPagel (GM_EA_tree, x=FGM, y=MGM, model="ARD", dep.var="y") # transiti
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -428,7 +415,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -457,7 +443,6 @@ fit3 <- fitPagel (GM_EA_tree, x=FGM, y=bride_pr, model="ARD", dep.var="y") # tra
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -465,7 +450,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -496,7 +480,6 @@ fit3 <- fitPagel (GM_EA_tree, x=FGM, y=castes, model="ARD", dep.var="y") # trans
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -504,7 +487,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -538,7 +520,6 @@ fit3 <- fitPagel (GM_EA_tree, x=clit, y=dist, model="ARD", dep.var="y") # transi
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -546,7 +527,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -576,7 +556,6 @@ fit3 <- fitPagel (GM_EA_tree, x=clit, y=sex_norms, model="ARD", dep.var="y") # t
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -584,7 +563,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -615,7 +593,6 @@ fit3 <- fitPagel (GM_EA_tree, x=clit, y=bride_pr, model="ARD", dep.var="y") # tr
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -623,7 +600,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -653,7 +629,6 @@ fit3 <- fitPagel (GM_EA_tree, x=clit, y=class, model="ARD", dep.var="y") # trans
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -661,7 +636,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -692,7 +666,6 @@ fit3 <- fitPagel (GM_EA_tree, x=exc, y=dist, model="ARD", dep.var="y") # transit
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -700,7 +673,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -729,7 +701,6 @@ fit3 <- fitPagel (GM_EA_tree, x=exc, y=patriloc, model="ARD", dep.var="y") # tra
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -737,7 +708,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -764,7 +734,6 @@ fit3 <- fitPagel (GM_EA_tree, x=exc, y=castes, model="ARD", dep.var="y") # trans
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -772,7 +741,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -800,7 +768,6 @@ fit3 <- fitPagel (GM_EA_tree, x=exc, y=class, model="ARD", dep.var="y") # transi
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -808,7 +775,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -838,7 +804,6 @@ fit3 <- fitPagel (GM_EA_tree, x=inf, y=dist, model="ARD", dep.var="y") # transit
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -846,7 +811,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -874,7 +838,6 @@ fit3 <- fitPagel (GM_EA_tree, x=inf, y=patrilin, model="ARD", dep.var="y") # tra
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -882,7 +845,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -912,7 +874,6 @@ fit3 <- fitPagel (GM_EA_tree, x=inf, y=past, model="ARD", dep.var="y") # transit
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -920,7 +881,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -950,7 +910,6 @@ fit3 <- fitPagel (GM_EA_tree, x=inf, y=bride_pr, model="ARD", dep.var="y") # tra
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -958,7 +917,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -989,7 +947,6 @@ fit3 <- fitPagel (GM_EA_tree, x=inf, y=class, model="ARD", dep.var="y") # transi
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -997,7 +954,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1027,7 +983,6 @@ fit3 <- fitPagel (GM_EA_tree, x=MGM, y=dist, model="ARD", dep.var="y") # transit
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1035,7 +990,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1062,7 +1016,6 @@ fit3 <- fitPagel (GM_EA_tree, x=MGM, y=patrilin, model="ARD", dep.var="y") # tra
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1070,7 +1023,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1097,7 +1049,6 @@ fit3 <- fitPagel (GM_EA_tree, x=MGM, y=castes, model="ARD", dep.var="y") # trans
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1105,7 +1056,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1135,7 +1085,6 @@ fit3 <- fitPagel (GM_EA_tree, x=MGM, y=high_gods, model="ARD", dep.var="y") # tr
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1143,7 +1092,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1173,7 +1121,6 @@ fit3 <- fitPagel (GM_EA_tree, x=cir, y=dist, model="ARD", dep.var="y") # transit
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1181,7 +1128,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1207,7 +1153,6 @@ fit3 <- fitPagel (GM_EA_tree, x=cir, y=castes, model="ARD", dep.var="y") # trans
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1215,7 +1160,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1241,7 +1185,6 @@ fit3 <- fitPagel (GM_EA_tree, x=cir, y=high_gods, model="ARD", dep.var="y") # tr
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1249,7 +1192,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1279,7 +1221,6 @@ fit3 <- fitPagel (GM_EA_tree, x=sup, y=dist, model="ARD", dep.var="y") # transit
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1287,7 +1228,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1317,7 +1257,6 @@ fit3 <- fitPagel (GM_EA_tree, x=sup, y=segr_adol, model="ARD", dep.var="y") # tr
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1325,7 +1264,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1355,7 +1293,6 @@ fit3 <- fitPagel (GM_EA_tree, x=sup, y=chiefdoms, model="ARD", dep.var="y") # tr
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1363,7 +1300,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1389,7 +1325,6 @@ fit3 <- fitPagel (GM_EA_tree, x=sup, y=high_gods, model="ARD", dep.var="y") # tr
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1397,7 +1332,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1530,7 +1464,6 @@ names (FGM) <- row.names (GM_SCCS_data_phylo)
 dist <- GM_SCCS_data_phylo$dist_bin
 names (dist) <- row.names (GM_SCCS_data_phylo)
 
-
 fit1 <- fitPagel (GM_SCCS_tree, x=FGM, y=dist, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
 fit2 <- fitPagel (GM_SCCS_tree, x=FGM, y=dist, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
 fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=dist, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
@@ -1539,7 +1472,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=dist, model="ARD", dep.var="y") # trans
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1547,7 +1479,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1569,7 +1500,6 @@ plot.fitPagel (fit1, lwd.by.rate=TRUE)
 MGM <- GM_SCCS_data_phylo$MGM
 names (MGM) <- row.names (GM_SCCS_data_phylo) 
 
-
 fit1 <- fitPagel (GM_SCCS_tree, x=FGM, y=MGM, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
 fit2 <- fitPagel (GM_SCCS_tree, x=FGM, y=MGM, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
 fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=MGM, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
@@ -1578,7 +1508,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=MGM, model="ARD", dep.var="y") # transi
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1586,7 +1515,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1607,7 +1535,6 @@ plot.fitPagel (fit2, lwd.by.rate=TRUE)
 bride_pr <- GM_SCCS_data_phylo$bride_pr
 names (bride_pr) <- row.names (GM_SCCS_data_phylo) 
 
-
 fit1 <- fitPagel (GM_SCCS_tree, x=FGM, y=bride_pr, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
 fit2 <- fitPagel (GM_SCCS_tree, x=FGM, y=bride_pr, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
 fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=bride_pr, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
@@ -1616,7 +1543,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=bride_pr, model="ARD", dep.var="y") # t
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1624,7 +1550,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1654,7 +1579,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=castes, model="ARD", dep.var="y") # tra
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1662,7 +1586,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1684,7 +1607,6 @@ plot.fitPagel (fit1, lwd.by.rate=TRUE)
 scars_f <- GM_SCCS_data_phylo$scars_f
 names (scars_f) <- row.names (GM_SCCS_data_phylo) 
 
-
 fit1 <- fitPagel (GM_SCCS_tree, x=FGM, y=scars_f, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
 fit2 <- fitPagel (GM_SCCS_tree, x=FGM, y=scars_f, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
 fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=scars_f, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
@@ -1693,7 +1615,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=scars_f, model="ARD", dep.var="y") # tr
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1701,7 +1622,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1730,7 +1650,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=clit, y=dist, model="ARD", dep.var="y") # tran
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1738,7 +1657,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1760,7 +1678,6 @@ plot.fitPagel (fit1, lwd.by.rate=TRUE)
 islam <- GM_SCCS_data_phylo$islam
 names (islam) <- row.names (GM_SCCS_data_phylo) 
 
-
 fit1 <- fitPagel (GM_SCCS_tree, x=clit, y=islam, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
 fit2 <- fitPagel (GM_SCCS_tree, x=clit, y=islam, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
 fit3 <- fitPagel (GM_SCCS_tree, x=clit, y=islam, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
@@ -1769,7 +1686,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=clit, y=islam, model="ARD", dep.var="y") # tra
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1777,7 +1693,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1805,7 +1720,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=clit, y=bride_pr, model="ARD", dep.var="y") # 
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1813,7 +1727,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1840,7 +1753,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=clit, y=class, model="ARD", dep.var="y") # tra
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1848,7 +1760,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1878,7 +1789,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=exc, y=dist, model="ARD", dep.var="y") # trans
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1886,7 +1796,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1916,7 +1825,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=exc, y=patriloc, model="ARD", dep.var="y") # t
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1924,7 +1832,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1955,7 +1862,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=exc, y=castes, model="ARD", dep.var="y") # tra
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1963,7 +1869,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1991,7 +1896,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=exc, y=scars_f, model="ARD", dep.var="y") # tr
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -1999,7 +1903,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2026,7 +1929,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=exc, y=class, model="ARD", dep.var="y") # tran
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2034,7 +1936,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2065,7 +1966,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=inf, y=dist, model="ARD", dep.var="y") # trans
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2073,7 +1973,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2100,7 +1999,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=inf, y=patrilin, model="ARD", dep.var="y") # t
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2108,7 +2006,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2139,7 +2036,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=inf, y=past, model="ARD", dep.var="y") # trans
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2147,7 +2043,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2177,7 +2072,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=inf, y=bride_pr, model="ARD", dep.var="y") # t
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2185,7 +2079,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2214,7 +2107,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=inf, y=classes, model="ARD", dep.var="y") # tr
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2222,7 +2114,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2252,7 +2143,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=MGM, y=dist, model="ARD", dep.var="y") # trans
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2260,7 +2150,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2287,7 +2176,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=MGM, y=patrilin, model="ARD", dep.var="y") # t
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2295,7 +2183,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2321,7 +2208,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=MGM, y=castes, model="ARD", dep.var="y") # tra
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2329,7 +2215,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2359,7 +2244,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=MGM, y=scars_m, model="ARD", dep.var="y") # tr
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2367,7 +2251,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2397,7 +2280,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=cir, y=dist, model="ARD", dep.var="y") # trans
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2405,7 +2287,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2432,7 +2313,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=cir, y=castes, model="ARD", dep.var="y") # tra
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2440,7 +2320,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2468,7 +2347,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=cir, y=islam, model="ARD", dep.var="y") # tran
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2476,7 +2354,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2507,7 +2384,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=sup, y=dist, model="ARD", dep.var="y") # trans
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2515,7 +2391,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2546,7 +2421,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=sup, y=segr_adol, model="ARD", dep.var="y") # 
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2554,7 +2428,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -2584,7 +2457,6 @@ fit3 <- fitPagel (GM_SCCS_tree, x=sup, y=chiefdoms, model="ARD", dep.var="y") # 
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("independent","x dependent","y dependent","both dependent")
-
 aic <- round(c(fit1$independent.AIC, fit2$dependent.AIC, fit3$dependent.AIC, fit1$dependent.AIC),2) # get AIC
 ll <- round(c(fit1$independent.logL, fit2$dependent.logL, fit3$dependent.logL, fit1$dependent.logL),2) # get log-likelihood values
 w_aic <- round (aic.w (aic),2) # get AIC weights
@@ -2592,7 +2464,6 @@ w_aic <- round (aic.w (aic),2) # get AIC weights
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
