@@ -118,14 +118,12 @@ dev.off()
   
   var_order <- c ("caste","class","bride_pr","int_agric","ext_agric","past","patrilin","patriloc","sex_norms","dist")
   names <- c ("castes","classes","bride-price","inten. agric.","exten. agric.","pastoralism","patrilineality","patrilocality","sex norms","co-wives separate")
-  
   FGM_EA <- ggplot(fgm_EA,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="blue") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="blue") + ggtitle("a") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### clit ###
   
   var_order <- c ("caste","bride_pr","past","patrilin","patriloc","sex_norms","dist")
   names <- c ("castes","bride-price","pastoralism","patrilineality","patrilocality","sex norms","co-wives separate")
-  
   clit_EA <- ggplot(cl_EA,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="turquoise2") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="turquoise2") + ggtitle("b") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### exc ###
@@ -136,28 +134,24 @@ dev.off()
   
   var_order <- c ("caste","class","bride_pr","past","patrilin","patriloc","sex_norms","dist")
   names <- c ("castes","classes","bride-price","pastoralism","patrilineality","patrilocality","sex norms","co-wives separate")
-  
   inf_EA <- ggplot(infib_EA,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="dodgerblue4") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="dodgerblue4") + ggtitle("d") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### MGM ###
   
   var_order <- c ("high_gods","caste","states","chiefdoms","bride_pr","int_agric","ext_agric","past","patrilin","patriloc","segr_adol","dist")
   names <- c ("high gods","castes","states","chiefdoms","bride-price","inten. agric.","exten. agric.","pastoralism","patrilineality","patrilocality","male segregation","co-wives separate")
-  
   MGM_EA <- ggplot(mgm_EA,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="red1") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="red1") + ggtitle("e") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### cir ###
   
   var_order <- c ("high_gods","caste","states","chiefdoms","bride_pr","int_agric","ext_agric","past","patrilin","patriloc","segr_adol","dist")
   names <- c ("high gods","castes","states","chiefdoms","bride-price","inten. agric.","exten. agric.","pastoralism","patrilineality","patrilocality","male segregation","co-wives separate")
-  
   cir_EA <- ggplot(circum_EA,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="gold") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="gold") + ggtitle("f") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### sup ###
   
   var_order <- c ("high_gods","caste","states","chiefdoms","bride_pr","int_agric","ext_agric","past","patrilin","patriloc","segr_adol","dist")
   names <- c ("high gods","castes","states","chiefdoms","bride-price","inten. agric.","exten. agric.","pastoralism","patrilineality","patrilocality","male segregation","co-wives separate")
-  
   sup_EA <- ggplot(super_EA,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="red4") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="red4") + ggtitle("g") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none") + theme(axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   
@@ -189,49 +183,42 @@ dev.off()
   
   var_order <- c ("caste","bride_pr","past","patrilin","patriloc","sex_norms","ext_aff","dist")
   names <- c ("castes","bride-price","pastoralism","patrilineality","patrilocality","sex norms","extramarital sex","co-wives separate")
-  
   FGM_SCCS <- ggplot(fgm_SCCS,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="blue") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="blue") + ggtitle("a") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### clit ###
   
   var_order <- c ("islam","bride_pr","ext_aff","dist")
   names <- c ("Islam","bride-price","extramarital sex","co-wives separate")
-  
   clit_SCCS <- ggplot(cl_SCCS,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="turquoise2") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="turquoise2") + ggtitle("b") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### exc ###
   
   var_order <- c ("scars_f","caste","class","bride_pr","int_agric","ext_agric","past","patrilin","patriloc","sex_norms","ext_aff","dist")
   names <- c ("scars-female","castes","classes","bride-price","inten. agric.","exten. agric.","pastoralism","patrilineality","patrilocality","sex norms","extramarital sex","co-wives separate")
-  
   exc_SCCS <- ggplot(ex_SCCS,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="turquoise4") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="turquoise4") + ggtitle("c") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### inf ###
   
   var_order <- c ("caste","bride_pr","past","patrilin","patriloc","sex_norms","ext_aff","dist")
   names <- c ("castes","bride-price","pastoralism","patrilineality","patrilocality","sex norms","extramarital sex","co-wives separate")
-  
   inf_SCCS <- ggplot(infib_SCCS,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="dodgerblue4") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="dodgerblue4") + ggtitle("d") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### MGM ###
   
   var_order <- c ("caste","chiefdoms","patrilin","patriloc","segr_adol","ext_aff","dist")
   names <- c ("castes","chiefdoms","patrilineality","patrilocality","male segregation","extramarital sex","co-wives separate")
-  
   MGM_SCCS <- ggplot(mgm_SCCS,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="red1") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="red1") + ggtitle("e") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### cir ###
   
   var_order <- c ("islam","caste","chiefdoms","patrilin","patriloc","segr_adol","ext_aff","dist")
   names <- c ("Islam","castes","chiefdoms","patrilineality","patrilocality","male segregation","extramarital sex","co-wives separate")
-  
   cir_SCCS <- ggplot(circum_SCCS,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="gold") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="gold") + ggtitle("f") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### sup ###
   
   var_order <- c ("ext_aff","dist")
   names <- c ("extramarital sex","co-wives separate")
-  
   sup_SCCS <- ggplot(super_SCCS,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="red4") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="red4") + ggtitle("g") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   
