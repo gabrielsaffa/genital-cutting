@@ -16,7 +16,6 @@ setwd ("")
 
 GM_EA_data <- read.csv ("GM_EA_imputed.csv", header=TRUE, row.names=1)
 GM_EA_tree <- read.tree ("SPT.EA.tre")
-
 GM_EA_tree_star <- compute.brlen (GM_EA_tree, method="Grafen", power=0.0001) # convert the tree into a star-like phylogeny
 
 
