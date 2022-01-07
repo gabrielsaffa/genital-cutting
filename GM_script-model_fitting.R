@@ -20,8 +20,7 @@ GM_EA_tree <- read.tree ("SPT.EA.tre")
 
 
 ### FGM ###
-
-### NOTE: some models gave a warning about increasing 'btol' (bound on the parameter space), which, when increased, in some cases produced unrealistically high estimates and standard errors. So the warning was ignored, which, after the discussion with one of the package authors, should be OK.
+### NOTE: some models gave a warning about increasing 'btol' (bound on the parameter space), which, when increased, in some cases produced unrealistically high estimates and standard errors. Therefore the warning was ignored, which, after the discussion with one of the package authors, should be OK.
 
 {
   
@@ -95,7 +94,6 @@ GM_EA_tree <- read.tree ("SPT.EA.tre")
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5","m6")
-
 aic <- round(c(FGM_mg$aic,FGM_m0$aic,FGM_m1$aic,FGM_m2$aic,FGM_m3$aic,FGM_m4$aic,FGM_m5$aic,FGM_m6$aic),2) # get AIC
 ll <- round(c(FGM_mg$logLik,FGM_m0$logLik,FGM_m1$logLik,FGM_m2$logLik,FGM_m3$logLik,FGM_m4$logLik,FGM_m5$logLik,FGM_m6$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(FGM_mg$aic,FGM_m0$aic,FGM_m1$aic,FGM_m2$aic,FGM_m3$aic,FGM_m4$aic,FGM_m5$aic,FGM_m6$aic)),2) # get AIC weights
@@ -103,7 +101,6 @@ w_aic <- round (Weights(c(FGM_mg$aic,FGM_m0$aic,FGM_m1$aic,FGM_m2$aic,FGM_m3$aic
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -135,35 +132,24 @@ FGM_mg <- phyloglm (FGM ~ dist + sex_norms + patriloc + patrilin + past + ext_ag
 ### get bootstrapped values
 
 est <- FGM_m4$coefficients # coefficients
-
 sd <- FGM_m4$sd # SD
-
 b_est <- as.data.frame (FGM_m4$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-9, ] # remove alpha
-
 b_ci <- as.data.frame (t(FGM_m4$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-9, ] # remove alpha
-
 fgm_m4 <- cbind (est, sd, b_est, b_ci)
 fgm_m4 <- fgm_m4[-1, ] # remove intercept
 
 # repeat for the other model
 
 est <- FGM_mg$coefficients 
-
 sd <- FGM_mg$sd # SD
-
 b_est <- as.data.frame (FGM_mg$bootmean) 
-
 b_est <- b_est[-9, ] 
-
 b_ci <- as.data.frame (t(FGM_mg$bootconfint95)) 
 b_ci <- b_ci[-9, ] 
-
 fgm_mg <- cbind (est, sd, b_est, b_ci) 
 fgm_mg <- fgm_mg[-1, ] 
-
 fgm_all <- round(rbind (fgm_m4, fgm_mg),2) # combine
 
 write.csv (fgm_all, file="fgm_all_EA.csv") # store the values
@@ -236,7 +222,6 @@ write.csv (fgm_all, file="fgm_all_EA.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5","m6") 
-
 aic <- round(c(clit_mg$aic,clit_m0$aic,clit_m1$aic,clit_m2$aic,clit_m3$aic,clit_m4$aic,clit_m5$aic,clit_m6$aic),2) # get AIC
 ll <- round(c(clit_mg$logLik,clit_m0$logLik,clit_m1$logLik,clit_m2$logLik,clit_m3$logLik,clit_m4$logLik,clit_m5$logLik,clit_m6$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(clit_mg$aic,clit_m0$aic,clit_m1$aic,clit_m2$aic,clit_m3$aic,clit_m4$aic,clit_m5$aic,clit_m6$aic)),2) # get AIC weights
@@ -244,7 +229,6 @@ w_aic <- round (Weights(c(clit_mg$aic,clit_m0$aic,clit_m1$aic,clit_m2$aic,clit_m
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -271,19 +255,13 @@ clit_m6 <- phyloglm (clit ~ dist + sex_norms + patriloc + patrilin + past + brid
 ### get bootstrapped values
 
 est <- clit_m6$coefficients # coefficients
-
 sd <- clit_m6$sd
-
 b_est <- as.data.frame (clit_m6$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-9, ] # remove alpha
-
 b_ci <- as.data.frame (t(clit_m6$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-9, ] # remove alpha
-
 cl_m6 <- cbind (est, sd, b_est, b_ci)
 cl_m6 <- cl_m6[-1, ] # remove intercept
-
 cl_all <- round(rbind (cl_m6),2) # combine
 
 write.csv (cl_all, file="cl_all_EA.csv") # store the values
@@ -350,7 +328,6 @@ write.csv (cl_all, file="cl_all_EA.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5","m6") 
-
 aic <- round(c(exc_mg$aic,exc_m0$aic,exc_m1$aic,exc_m2$aic,exc_m3$aic,exc_m4$aic,exc_m5$aic,exc_m6$aic),2) # get AIC
 ll <- round(c(exc_mg$logLik,exc_m0$logLik,exc_m1$logLik,exc_m2$logLik,exc_m3$logLik,exc_m4$logLik,exc_m5$logLik,exc_m6$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(exc_mg$aic,exc_m0$aic,exc_m1$aic,exc_m2$aic,exc_m3$aic,exc_m4$aic,exc_m5$aic,exc_m6$aic)),2) # get AIC weights
@@ -358,7 +335,6 @@ w_aic <- round (Weights(c(exc_mg$aic,exc_m0$aic,exc_m1$aic,exc_m2$aic,exc_m3$aic
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -384,19 +360,13 @@ exc_mg <- phyloglm (exc ~ dist + sex_norms + patriloc + patrilin + past + ext_ag
 ### get bootstrapped values
 
 est <- exc_mg$coefficients # coefficients
-
 sd <- exc_mg$sd # SD
-
 b_est <- as.data.frame (exc_mg$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-12, ] # remove alpha
-
 b_ci <- as.data.frame (t(exc_mg$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-12, ] # remove alpha
-
 ex_mg <- cbind (est, sd, b_est, b_ci)
 ex_mg <- ex_mg[-1, ] # remove intercept
-
 ex_all <- round(rbind (ex_mg),2) # combine
 
 write.csv (ex_all, file="ex_all_EA.csv") # store the values
@@ -463,7 +433,6 @@ write.csv (ex_all, file="ex_all_EA.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5","m6")
-
 aic <- round(c(inf_mg$aic,inf_m0$aic,inf_m1$aic,inf_m2$aic,inf_m3$aic,inf_m4$aic,inf_m5$aic,inf_m6$aic),2) # get AIC
 ll <- round(c(inf_mg$logLik,inf_m0$logLik,inf_m1$logLik,inf_m2$logLik,inf_m3$logLik,inf_m4$logLik,inf_m5$logLik,inf_m6$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(inf_mg$aic,inf_m0$aic,inf_m1$aic,inf_m2$aic,inf_m3$aic,inf_m4$aic,inf_m5$aic,inf_m6$aic)),2) # get AIC weights
@@ -471,7 +440,6 @@ w_aic <- round (Weights(c(inf_mg$aic,inf_m0$aic,inf_m1$aic,inf_m2$aic,inf_m3$aic
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -503,35 +471,24 @@ inf_m4 <- phyloglm (inf ~ dist + sex_norms + patriloc + patrilin + past + bride_
 ### get bootstrapped values
 
 est <- inf_m3$coefficients # coefficients
-
 sd <- inf_m3$sd
-
 b_est <- as.data.frame (inf_m3$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-3, ] # remove alpha
-
 b_ci <- as.data.frame (t(inf_m3$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-3, ] # remove alpha
-
 infib_m3 <- cbind (est, sd, b_est, b_ci)
 infib_m3 <- infib_m3[-1, ] # remove intercept
 
 # repeat for the other model
 
 est <- inf_m4$coefficients 
-
 sd <- inf_m4$sd
-
 b_est <- as.data.frame (inf_m4$bootmean) 
-
 b_est <- b_est[-9, ] 
-
 b_ci <- as.data.frame (t(inf_m4$bootconfint95)) 
 b_ci <- b_ci[-9, ] 
-
 infib_m4 <- cbind (est, sd, b_est, b_ci) 
 infib_m4 <- infib_m4[-1, ] 
-
 infib_all <- round(rbind (infib_m3, infib_m4),2) # combine
 
 write.csv (infib_all, file="infib_all_EA.csv") # store the values
@@ -584,7 +541,6 @@ write.csv (infib_all, file="infib_all_EA.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4")
-
 aic <- round(c(MGM_mg$aic,MGM_m0$aic,MGM_m1$aic,MGM_m2$aic,MGM_m3$aic,MGM_m4$aic),2) # get AIC
 ll <- round(c(MGM_mg$logLik,MGM_m0$logLik,MGM_m1$logLik,MGM_m2$logLik,MGM_m3$logLik,MGM_m4$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(MGM_mg$aic,MGM_m0$aic,MGM_m1$aic,MGM_m2$aic,MGM_m3$aic,MGM_m4$aic)),2) # get AIC weights
@@ -592,7 +548,6 @@ w_aic <- round (Weights(c(MGM_mg$aic,MGM_m0$aic,MGM_m1$aic,MGM_m2$aic,MGM_m3$aic
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -618,19 +573,13 @@ MGM_mg <- phyloglm (MGM ~ dist + segr_adol + patriloc + patrilin + past + ext_ag
 ### get bootstrapped values
 
 est <- MGM_mg$coefficients 
-
 sd <- MGM_mg$sd
-
 b_est <- as.data.frame (MGM_mg$bootmean) 
-
 b_est <- b_est[-14, ] 
-
 b_ci <- as.data.frame (t(MGM_mg$bootconfint95)) 
 b_ci <- b_ci[-14, ] 
-
 mgm_mg <- cbind (est, sd, b_est, b_ci) 
 mgm_mg <- mgm_mg[-1, ] 
-
 mgm_mg <- round(rbind (mgm_mg),2)
 
 write.csv (mgm_mg, file="mgm_mg_EA.csv") # store the values
@@ -683,7 +632,6 @@ write.csv (mgm_mg, file="mgm_mg_EA.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4")
-
 aic <- round(c(cir_mg$aic,cir_m0$aic,cir_m1$aic,cir_m2$aic,cir_m3$aic,cir_m4$aic),2) # get AIC
 ll <- round(c(cir_mg$logLik,cir_m0$logLik,cir_m1$logLik,cir_m2$logLik,cir_m3$logLik,cir_m4$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(cir_mg$aic,cir_m0$aic,cir_m1$aic,cir_m2$aic,cir_m3$aic,cir_m4$aic)),2) # get AIC weights
@@ -691,7 +639,6 @@ w_aic <- round (Weights(c(cir_mg$aic,cir_m0$aic,cir_m1$aic,cir_m2$aic,cir_m3$aic
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -717,19 +664,13 @@ cir_mg <- phyloglm (cir ~ dist + segr_adol + patriloc + patrilin + past + ext_ag
 ### get bootstrapped values
 
 est <- cir_mg$coefficients 
-
 sd <- cir_mg$sd
-
 b_est <- as.data.frame (cir_mg$bootmean) 
-
 b_est <- b_est[-14, ] 
-
 b_ci <- as.data.frame (t(cir_mg$bootconfint95)) 
 b_ci <- b_ci[-14, ] 
-
 circum_mg <- cbind (est, sd, b_est, b_ci) 
 circum_mg <- circum_mg[-1, ] 
-
 circum_mg <- round(rbind (circum_mg),2)
 
 write.csv (circum_mg, file="circum_mg_EA.csv") # store the values 
@@ -782,7 +723,6 @@ write.csv (circum_mg, file="circum_mg_EA.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4")
-
 aic <- round(c(sup_mg$aic,sup_m0$aic,sup_m1$aic,sup_m2$aic,sup_m3$aic,sup_m4$aic),2) # get AIC
 ll <- round(c(sup_mg$logLik,sup_m0$logLik,sup_m1$logLik,sup_m2$logLik,sup_m3$logLik,sup_m4$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(sup_mg$aic,sup_m0$aic,sup_m1$aic,sup_m2$aic,sup_m3$aic,sup_m4$aic)),2) # get AIC weights
@@ -790,7 +730,6 @@ w_aic <- round (Weights(c(sup_mg$aic,sup_m0$aic,sup_m1$aic,sup_m2$aic,sup_m3$aic
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -822,35 +761,24 @@ sup_mg <- phyloglm (sup ~ dist + segr_adol + patriloc + patrilin + past + ext_ag
 ### get bootstrapped values
 
 est <- sup_m4$coefficients # coefficients
-
 sd <- sup_m4$sd
-
 b_est <- as.data.frame (sup_m4$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-9, ] # remove alpha
-
 b_ci <- as.data.frame (t(sup_m4$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-9, ] # remove alpha
-
 super_m4 <- cbind (est, sd, b_est, b_ci)
 super_m4 <- super_m4[-1, ] # remove intercept
 
 # repeat for the other model
 
 est <- sup_mg$coefficients 
-
 sd <- sup_mg$sd
-
 b_est <- as.data.frame (sup_mg$bootmean) 
-
 b_est <- b_est[-14, ] 
-
 b_ci <- as.data.frame (t(sup_mg$bootconfint95)) 
 b_ci <- b_ci[-14, ] 
-
 super_mg <- cbind (est, sd, b_est, b_ci) 
 super_mg <- super_mg[-1, ] 
-
 super_all <- round(rbind (super_m4, super_mg),2) # combine
 
 write.csv (super_all, file="super_all_EA.csv") # store the values
@@ -932,7 +860,6 @@ GM_SCCS_tree <- read.tree ("SPT.SCCS.tre")
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5","m6","m7")
-
 aic <- round(c(FGM_mg$aic,FGM_m0$aic,FGM_m1$aic,FGM_m2$aic,FGM_m3$aic,FGM_m4$aic,FGM_m5$aic,FGM_m6$aic,FGM_m7$aic),2) # get AIC
 ll <- round(c(FGM_mg$logLik,FGM_m0$logLik,FGM_m1$logLik,FGM_m2$logLik,FGM_m3$logLik,FGM_m4$logLik,FGM_m5$logLik,FGM_m6$logLik,FGM_m7$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(FGM_mg$aic,FGM_m0$aic,FGM_m1$aic,FGM_m2$aic,FGM_m3$aic,FGM_m4$aic,FGM_m5$aic,FGM_m6$aic,FGM_m7$aic)),2) # get AIC weights
@@ -940,7 +867,6 @@ w_aic <- round (Weights(c(FGM_mg$aic,FGM_m0$aic,FGM_m1$aic,FGM_m2$aic,FGM_m3$aic
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -972,35 +898,24 @@ FGM_m7 <- phyloglm (FGM ~ dist + ext_aff + sex_norms + patriloc + patrilin + pas
 ### get bootstrapped values
 
 est <- FGM_m5$coefficients # coefficients
-
 sd <- FGM_m5$sd # SD
-
 b_est <- as.data.frame (FGM_m5$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-3, ] # remove alpha
-
 b_ci <- as.data.frame (t(FGM_m5$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-3, ] # remove alpha
-
 fgm_m5 <- cbind (est, sd, b_est, b_ci)
 fgm_m5 <- fgm_m5[-1, ] # remove intercept
 
 #
 
 est <- FGM_m7$coefficients 
-
 sd <- FGM_m7$sd # SD
-
 b_est <- as.data.frame (FGM_m7$bootmean) 
-
 b_est <- b_est[-10, ] 
-
 b_ci <- as.data.frame (t(FGM_m7$bootconfint95)) 
 b_ci <- b_ci[-10, ] 
-
 fgm_m7 <- cbind (est, sd, b_est, b_ci) 
 fgm_m7 <- fgm_m7[-1, ] 
-
 fgm_all <- round(rbind (fgm_m5,fgm_m7),2) # combine
 
 write.csv (fgm_all, file="fgm_all_SCCS.csv") # store the values
@@ -1088,7 +1003,6 @@ write.csv (fgm_all, file="fgm_all_SCCS.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5","m6","m7","m8")
-
 aic <- round(c(clit_mg$aic,clit_m0$aic,clit_m1$aic,clit_m2$aic,clit_m3$aic,clit_m4$aic,clit_m5$aic,clit_m6$aic,clit_m7$aic,clit_m8$aic),2) # get AIC
 ll <- round(c(clit_mg$logLik,clit_m0$logLik,clit_m1$logLik,clit_m2$logLik,clit_m3$logLik,clit_m4$logLik,clit_m5$logLik,clit_m6$logLik,clit_m7$logLik,clit_m8$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(clit_mg$aic,clit_m0$aic,clit_m1$aic,clit_m2$aic,clit_m3$aic,clit_m4$aic,clit_m5$aic,clit_m6$aic,clit_m7$aic,clit_m8$aic)),2) # get AIC weights
@@ -1096,7 +1010,6 @@ w_aic <- round (Weights(c(clit_mg$aic,clit_m0$aic,clit_m1$aic,clit_m2$aic,clit_m
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1138,51 +1051,35 @@ clit_m7 <- phyloglm (clit ~ islam,
 ### get bootstrapped values
 
 est <- clit_m1$coefficients # coefficients
-
 sd <- clit_m1$sd
-
 b_est <- as.data.frame (clit_m1$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-4, ] # remove alpha
-
 b_ci <- as.data.frame (t(clit_m1$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-4, ] # remove alpha
-
 cl_m1 <- cbind (est, sd, b_est, b_ci)
 cl_m1 <- cl_m1[-1, ] # remove intercept
 
 #
 
 est <- clit_m5$coefficients 
-
 sd <- clit_m5$sd
-
 b_est <- as.data.frame (clit_m5$bootmean) 
-
 b_est <- b_est[-3, ] 
-
 b_ci <- as.data.frame (t(clit_m5$bootconfint95)) 
 b_ci <- b_ci[-3, ] 
-
 cl_m5 <- cbind (est, sd, b_est, b_ci) 
 cl_m5 <- cl_m5[-1, ] 
 
 #
 
 est <- clit_m7$coefficients 
-
 sd <- clit_m7$sd
-
 b_est <- as.data.frame (clit_m7$bootmean) 
-
 b_est <- b_est[-3, ] 
-
 b_ci <- as.data.frame (t(clit_m7$bootconfint95)) 
 b_ci <- b_ci[-3, ] 
-
 cl_m7 <- cbind (est, sd, b_est, b_ci) 
 cl_m7 <- cl_m7[-1, ] 
-
 cl_all <- round(rbind (cl_m1,cl_m5,cl_m7),2) # combine
 
 write.csv (cl_all, file="cl_all_SCCS.csv") # store the values
@@ -1261,7 +1158,6 @@ write.csv (cl_all, file="cl_all_SCCS.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5","m6","m7")
-
 aic <- round(c(exc_mg$aic,exc_m0$aic,exc_m1$aic,exc_m2$aic,exc_m3$aic,exc_m4$aic,exc_m5$aic,exc_m6$aic,exc_m7$aic),2) # get AIC
 ll <- round(c(exc_mg$logLik,exc_m0$logLik,exc_m1$logLik,exc_m2$logLik,exc_m3$logLik,exc_m4$logLik,exc_m5$logLik,exc_m6$logLik,exc_m7$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(exc_mg$aic,exc_m0$aic,exc_m1$aic,exc_m2$aic,exc_m3$aic,exc_m4$aic,exc_m5$aic,exc_m6$aic,exc_m7$aic)),2) # get AIC weights
@@ -1269,7 +1165,6 @@ w_aic <- round (Weights(c(exc_mg$aic,exc_m0$aic,exc_m1$aic,exc_m2$aic,exc_m3$aic
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1296,19 +1191,13 @@ exc_mg <- phyloglm (exc ~ dist + ext_aff + sex_norms + patriloc + patrilin + pas
 ### get bootstrapped values
 
 est <- exc_mg$coefficients # coefficients
-
 sd <- exc_mg$sd
-
 b_est <- as.data.frame (exc_mg$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-14, ] # remove alpha
-
 b_ci <- as.data.frame (t(exc_mg$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-14, ] # remove alpha
-
 ex_mg <- cbind (est, sd, b_est, b_ci)
 ex_mg <- ex_mg[-1, ] # remove intercept
-
 ex_all <- round(rbind (ex_mg),2) # combine
 
 write.csv (ex_all, file="ex_all_SCCS.csv") # store the values
@@ -1385,7 +1274,6 @@ write.csv (ex_all, file="ex_all_SCCS.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5","m6","m7")
-
 aic <- round(c(inf_mg$aic,inf_m0$aic,inf_m1$aic,inf_m2$aic,inf_m3$aic,inf_m4$aic,inf_m5$aic,inf_m6$aic,inf_m7$aic),2) # get AIC
 ll <- round(c(inf_mg$logLik,inf_m0$logLik,inf_m1$logLik,inf_m2$logLik,inf_m3$logLik,inf_m4$logLik,inf_m5$logLik,inf_m6$logLik,inf_m7$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(inf_mg$aic,inf_m0$aic,inf_m1$aic,inf_m2$aic,inf_m3$aic,inf_m4$aic,inf_m5$aic,inf_m6$aic,inf_m7$aic)),2) # get AIC weights
@@ -1393,7 +1281,6 @@ w_aic <- round (Weights(c(inf_mg$aic,inf_m0$aic,inf_m1$aic,inf_m2$aic,inf_m3$aic
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1437,68 +1324,46 @@ inf_m7 <- phyloglm (inf ~ dist + ext_aff + sex_norms + patriloc + patrilin + pas
 ### get bootstrapped values
 
 est <- inf_m5$coefficients # coefficients
-
 sd <- inf_m5$sd
-
 b_est <- as.data.frame (inf_m5$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-3, ] # remove alpha
-
 b_ci <- as.data.frame (t(inf_m5$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-3, ] # remove alpha
-
 infib_m5 <- cbind (est, sd, b_est, b_ci)
 infib_m5 <- infib_m5[-1, ] # remove intercept
 
 #
 
 est <- inf_m1$coefficients # coefficients
-
-
 sd <- inf_m1$sd
-
 b_est <- as.data.frame (inf_m1$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-4, ] # remove alpha
-
 b_ci <- as.data.frame (t(inf_m1$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-4, ] # remove alpha
-
 infib_m1 <- cbind (est, sd, b_est, b_ci)
 infib_m1 <- infib_m1[-1, ] # remove intercept
 
 #
 
 est <- inf_m4$coefficients 
-
 sd <- inf_m4$sd
-
 b_est <- as.data.frame (inf_m4$bootmean) 
-
 b_est <- b_est[-3, ] 
-
 b_ci <- as.data.frame (t(inf_m4$bootconfint95)) 
 b_ci <- b_ci[-3, ] 
-
 infib_m4 <- cbind (est, sd, b_est, b_ci) 
 infib_m4 <- infib_m4[-1, ] 
 
 #
 
 est <- inf_m7$coefficients 
-
 sd <- inf_m7$sd
-
 b_est <- as.data.frame (inf_m7$bootmean) 
-
 b_est <- b_est[-10, ] 
-
 b_ci <- as.data.frame (t(inf_m7$bootconfint95)) 
 b_ci <- b_ci[-10, ] 
-
 infib_m7 <- cbind (est, sd, b_est, b_ci) 
 infib_m7 <- infib_m7[-1, ] 
-
 infib_all <- round(rbind (infib_m5,infib_m1,infib_m4,infib_m7),2) # combine
 
 write.csv (infib_all, file="infib_all_SCCS.csv") # store the values
@@ -1561,7 +1426,6 @@ write.csv (infib_all, file="infib_all_SCCS.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5")
-
 aic <- round(c(MGM_mg$aic,MGM_m0$aic,MGM_m1$aic,MGM_m2$aic,MGM_m3$aic,MGM_m4$aic,MGM_m5$aic),2) # get AIC
 ll <- round(c(MGM_mg$logLik,MGM_m0$logLik,MGM_m1$logLik,MGM_m2$logLik,MGM_m3$logLik,MGM_m4$logLik,MGM_m5$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(MGM_mg$aic,MGM_m0$aic,MGM_m1$aic,MGM_m2$aic,MGM_m3$aic,MGM_m4$aic,MGM_m5$aic)),2) # get AIC weights
@@ -1569,7 +1433,6 @@ w_aic <- round (Weights(c(MGM_mg$aic,MGM_m0$aic,MGM_m1$aic,MGM_m2$aic,MGM_m3$aic
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1595,19 +1458,13 @@ MGM_m5 <- phyloglm (MGM ~ dist + ext_aff + segr_adol + patriloc + patrilin + chi
 ### get bootstrapped values
 
 est <- MGM_m5$coefficients # coefficients
-
 sd <- MGM_m5$sd
-
 b_est <- as.data.frame (MGM_m5$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-9, ] # remove alpha
-
 b_ci <- as.data.frame (t(MGM_m5$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-9, ] # remove alpha
-
 mgm_m5 <- cbind (est, sd, b_est, b_ci)
 mgm_m5 <- mgm_m5[-1, ] # remove intercept
-
 mgm_m5 <- round(rbind (mgm_m5),2)
 
 write.csv (mgm_m5, file="mgm_m5_SCCS.csv") # store the values
@@ -1676,7 +1533,6 @@ write.csv (mgm_m5, file="mgm_m5_SCCS.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5","m6")
-
 aic <- round(c(cir_mg$aic,cir_m0$aic,cir_m1$aic,cir_m2$aic,cir_m3$aic,cir_m4$aic,cir_m5$aic,cir_m6$aic),2) # get AIC
 ll <- round(c(cir_mg$logLik,cir_m0$logLik,cir_m1$logLik,cir_m2$logLik,cir_m3$logLik,cir_m4$logLik,cir_m5$logLik,cir_m6$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(cir_mg$aic,cir_m0$aic,cir_m1$aic,cir_m2$aic,cir_m3$aic,cir_m4$aic,cir_m5$aic,cir_m6$aic)),2) # get AIC weights
@@ -1684,7 +1540,6 @@ w_aic <- round (Weights(c(cir_mg$aic,cir_m0$aic,cir_m1$aic,cir_m2$aic,cir_m3$aic
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1710,19 +1565,13 @@ cir_m6 <- phyloglm (cir ~ dist + ext_aff + segr_adol + patriloc + patrilin + chi
 ### get bootstrapped values
 
 est <- cir_m6$coefficients # coefficients
-
 sd <- cir_m6$sd
-
 b_est <- as.data.frame (cir_m6$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-10, ] # remove alpha
-
 b_ci <- as.data.frame (t(cir_m6$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-10, ] # remove alpha
-
 circum_m6 <- cbind (est, sd, b_est, b_ci)
 circum_m6 <- circum_m6[-1, ] # remove intercept
-
 circum_all <- round(rbind (circum_m6),2)
 
 write.csv (circum_all, file="circum_all_SCCS.csv") # store the values
@@ -1782,7 +1631,6 @@ write.csv (circum_all, file="circum_all_SCCS.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5") 
-
 aic <- round(c(sup_mg$aic,sup_m0$aic,sup_m1$aic,sup_m2$aic,sup_m3$aic,sup_m4$aic,sup_m5$aic),2) # get AIC
 ll <- round(c(sup_mg$logLik,sup_m0$logLik,sup_m1$logLik,sup_m2$logLik,sup_m3$logLik,sup_m4$logLik,sup_m5$logLik),2) # get log-likelihood values
 w_aic <- round (Weights(c(sup_mg$aic,sup_m0$aic,sup_m1$aic,sup_m2$aic,sup_m3$aic,sup_m4$aic,sup_m5$aic)),2) # get AIC weights
@@ -1790,7 +1638,6 @@ w_aic <- round (Weights(c(sup_mg$aic,sup_m0$aic,sup_m1$aic,sup_m2$aic,sup_m3$aic
 # get delta AIC 
 
 d_aic <- 0
-
 for (i in 1:length (aic))
 {
   aic_diff <- (aic[i] - min(aic))
@@ -1816,17 +1663,12 @@ sup_m1 <- phyloglm (sup ~ dist + ext_aff,
 ### get bootstrapped values
 
 est <- sup_m1$coefficients # coefficients
-
 b_est <- as.data.frame (sup_m1$bootmean) # bootstrapped coefficients
-
 b_est <- b_est[-4, ] # remove alpha
-
 b_ci <- as.data.frame (t(sup_m1$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-4, ] # remove alpha
-
 super_m1 <- cbind (est, b_est, b_ci)
 super_m1 <- super_m1[-1, ] # remove intercept
-
 super_m1 <- round(rbind (super_m1),2)
 
 write.csv (super_m1, file="super_m1_SCCS.csv") # store the values
