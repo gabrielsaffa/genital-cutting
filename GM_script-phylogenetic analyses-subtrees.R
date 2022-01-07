@@ -24,9 +24,7 @@ clit <- setNames (subdata_aus[,2], rownames(subdata_aus))
 aus_clit <- make.simmap (subtree_aus, clit, model="ARD", Q="empirical")
 aus_clit_pd <- summary (aus_clit, consensus.tree=subtree_aus_cons)
 
-
    cols <- setNames (c("gray85","turquoise2"), levels(as.factor(clit)))
-   
    plot (aus_clit_pd,
          offset=0.5,
          fsize=0.6,
@@ -56,9 +54,7 @@ aus_clit_pd <- summary (aus_clit, consensus.tree=subtree_aus_cons)
    aus_cir <- make.simmap (subtree_aus, cir, model="ARD", Q="empirical")
    aus_cir_pd <- summary (aus_cir, consensus.tree=subtree_aus_cons)
    
-   
    cols <- setNames (c("gray85","gold"), levels(as.factor(cir)))
-   
    plot (aus_cir_pd,
          offset=0.5,
          fsize=0.6,
@@ -88,9 +84,7 @@ aus_clit_pd <- summary (aus_clit, consensus.tree=subtree_aus_cons)
    aus_sup <- make.simmap (subtree_aus, sup, model="ARD", Q="empirical")
    aus_sup_pd <- summary (aus_sup, consensus.tree=subtree_aus_cons)
    
-   
    cols <- setNames (c("gray85","red4"), levels(as.factor(sup)))
-   
    plot (aus_sup_pd,
          offset=0.5,
          fsize=0.6,
@@ -127,9 +121,7 @@ FGM <- setNames (subdata_ban[,2], rownames(subdata_ban))
 ban_FGM <- make.simmap (subtree_ban, FGM, model="ARD", Q="empirical")
 ban_FGM_pd <- summary (ban_FGM, consensus.tree=subtree_ban_cons)
 
-
 cols <- setNames (c("gray85","blue"), levels(as.factor(FGM)))
-
 plot (ban_FGM_pd,
       offset=0.5,
       fsize=0.6,
@@ -159,9 +151,7 @@ clit <- setNames (subdata_ban[,3], rownames(subdata_ban))
 ban_clit <- make.simmap (subtree_ban, clit, model="ARD", Q="empirical")
 ban_clit_pd <- summary (ban_clit, consensus.tree=subtree_ban_cons)
 
-
 cols <- setNames (c("gray85","turquoise2"), levels(as.factor(clit)))
-
 plot (ban_clit_pd,
       offset=0.5,
       fsize=0.6,
@@ -191,9 +181,7 @@ exc <- setNames (subdata_ban[,4], rownames(subdata_ban))
 ban_exc <- make.simmap (subtree_ban, exc, model="ARD", Q="empirical")
 ban_exc_pd <- summary (ban_exc, consensus.tree=subtree_ban_cons)
 
-
 cols <- setNames (c("gray85","turquoise4"), levels(as.factor(exc)))
-
 plot (ban_exc_pd,
       offset=0.5,
       fsize=0.6,
@@ -223,9 +211,7 @@ add.simmap.legend (x=0,
    ban_cir <- make.simmap (subtree_ban, cir, model="ARD", Q="empirical")
    ban_cir_pd <- summary (ban_cir, consensus.tree=subtree_ban_cons)
    
-   
    cols <- setNames (c("gray85","gold"), levels(as.factor(cir)))
-   
    plot (ban_cir_pd,
          offset=0.5,
          fsize=0.6,
@@ -255,9 +241,7 @@ add.simmap.legend (x=0,
    ban_MGM <- make.simmap (subtree_ban, MGM, model="ARD", Q="empirical")
    ban_MGM_pd <- summary (ban_MGM, consensus.tree=subtree_ban_cons)
    
-   
    cols <- setNames (c("gray85","red1"), levels(as.factor(MGM)))
-   
    plot (ban_MGM_pd,
          offset=0.5,
          fsize=0.6,
@@ -294,9 +278,7 @@ subtree_ie_cons <- ls.consensus (subtree_ie)
    ie_clit <- make.simmap (subtree_ie, clit, model="ARD", Q="empirical")
    ie_clit_pd <- summary (ie_clit, consensus.tree=subtree_ie_cons)
    
-   
    cols <- setNames (c("gray85","turquoise2"), levels(as.factor(clit)))
-   
    plot (ie_clit_pd,
          offset=0.5,
          fsize=0.6,
@@ -326,9 +308,7 @@ subtree_ie_cons <- ls.consensus (subtree_ie)
    ie_cir <- make.simmap (subtree_ie, cir, model="ARD", Q="empirical")
    ie_cir_pd <- summary (ie_cir, consensus.tree=subtree_ie_cons)
    
-   
    cols <- setNames (c("gray85","gold"), levels(as.factor(cir)))
-   
    plot (ie_cir_pd,
          offset=0.5,
          fsize=0.6,
