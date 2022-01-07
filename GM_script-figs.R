@@ -1,6 +1,6 @@
-################################################################################################################
-### R script for: Global phylogenetic analysis reveals multiple origins and functions of genital mutilations ###
-################################################################################################################
+#########################################################################################################
+### R script for: Global phylogenetic analysis reveals multiple origins of genital mutilation/cutting ###
+#########################################################################################################
 
 ### visualizing the data and the results ###
 
