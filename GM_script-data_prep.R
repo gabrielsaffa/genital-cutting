@@ -104,7 +104,6 @@ GM_SCCS_ca$col$contrib # we choose Islam due to its high loading on the second d
 
 GM_SCCS_data <- GM_SCCS_data[,-c(8,10,11,12,13,15,18,19,21,22,24,25,28,30,31,36,39,41)] # keep only the selected variables
 str (GM_SCCS_data) # OK
-
 write.csv (GM_SCCS_data, "GM_SCCS_original.csv")
 
 
@@ -114,7 +113,6 @@ write.csv (GM_SCCS_data, "GM_SCCS_original.csv")
 ### SCCS ###
 
 GM_SCCS_data <- read.csv ("GM_SCCS_original.csv", header=TRUE)
-
 pop <- GM_SCCS_data[,1] # store the population column
 GM_SCCS_data <- GM_SCCS_data[,-1] # remove the population column
 
@@ -129,7 +127,6 @@ GM_SCCS_data[cols] <- lapply (GM_SCCS_data[cols], factor) # convert to factors b
 
 
 GM_SCCS_imp <- missForest (GM_SCCS_data, variablewise=TRUE) # impute
-
 GM_SCCS_imp$OOBerror # check the imputation error of each imputed variable
 GM_SCCS_imp_e <- rbind (GM_SCCS_imp$OOBerror)
 
@@ -247,14 +244,12 @@ str (GM_SCCS_data)
 
 GM_SCCS_data <- GM_SCCS_data[,-c(10,11,12,13,14,19,26,27)] # remove variables with the original coding
 str (GM_SCCS_data) # OK
-
 write.csv (GM_SCCS_data, "GM_SCCS_original_recoded.csv")
 
 
 ### we'll impute the re-coded data
 
 GM_SCCS_data_rec <- read.csv ("GM_SCCS_original_recoded.csv", header=TRUE)
-
 pop <- GM_SCCS_data_rec[,1] # store the population column
 GM_SCCS_data_rec <- GM_SCCS_data_rec[,-1] # remove the population column
 
@@ -282,7 +277,6 @@ write.csv (GM_SCCS_imp_r, file="GM_SCCS_imputed.csv") # store the imputed data
 ### we'll do the same for the EA
 
 GM_EA_data <- read.csv ("GM_EA_original.csv", header=TRUE)
-
 GM_EA_data <- GM_EA_data[complete.cases(GM_EA_data[, 1:7]), ] # remove rows according to missing data for any GM
 str (GM_EA_data) # N=575
 
@@ -294,7 +288,6 @@ GM_EA_data[cols] <- lapply (GM_EA_data[cols], factor) # convert to factors befor
 
 
 GM_EA_imp <- missForest (GM_EA_data, variablewise=TRUE) # impute
-
 GM_EA_imp$OOBerror # check the imputation error of each imputed variable
 GM_EA_imp_e <- rbind (GM_EA_imp$OOBerror)
 
@@ -375,18 +368,14 @@ GM_EA_data$high_gods <- as.factor(GM_EA_data$high_gods)
 levels(GM_EA_data$high_gods) <- list("1"=c("3","4"), "0"=c("1","2"))
 
 
-str (GM_EA_data)
-
 GM_EA_data <- GM_EA_data[,-c(8,11,12,13,14,15,16)] # remove unnecessary variables
 str (GM_EA_data) # OK
-
 write.csv (GM_EA_data, "GM_EA_original_recoded.csv")
 
 
 ### impute
 
 GM_EA_data_rec <- read.csv ("GM_EA_original_recoded.csv", header=TRUE)
-
 pop <- GM_EA_data_rec[,1] # store the population column
 GM_EA_data_rec <- GM_EA_data_rec[,-1] # remove the population column
 
@@ -395,7 +384,6 @@ GM_EA_data_rec[cols] <- lapply (GM_EA_data_rec[cols], factor) # convert to facto
 
 
 GM_EA_imp_r <- missForest (GM_EA_data_rec, variablewise=TRUE) # impute
-
 GM_EA_imp_r$OOBerror # check the imputation error of each imputed variable
 GM_EA_imp_r_e <- rbind (GM_EA_imp_r$OOBerror)
 
@@ -405,7 +393,6 @@ mean (GM_EA_imp_e)
 mean (GM_EA_imp_r_e) # error is lower for the re-coded data
 
 GM_EA_imp_r <- cbind (pop, GM_EA_imp_r$ximp) 
-
 write.csv (GM_EA_imp_r, file="GM_EA_imputed.csv") 
 
 
