@@ -1,6 +1,6 @@
-################################################################################################################
-### R script for: Global phylogenetic analysis reveals multiple origins and functions of genital mutilations ###
-################################################################################################################
+#########################################################################################################
+### R script for: Global phylogenetic analysis reveals multiple origins of genital mutilation/cutting ###
+#########################################################################################################
 
 ### ancestral state reconstructions of GM for individual language families ###
 
@@ -21,7 +21,7 @@ subtree_aus_cons <- ls.consensus (subdata_aus)
 {
    
 clit <- setNames (subdata_aus[,2], rownames(subdata_aus))
-aus_clit <- make.simmap (subtree_aus_red, clit, model="ARD", Q="empirical")
+aus_clit <- make.simmap (subtree_aus, clit, model="ARD", Q="empirical")
 aus_clit_pd <- summary (aus_clit, consensus.tree=subtree_aus_cons)
 
 
@@ -53,7 +53,7 @@ aus_clit_pd <- summary (aus_clit, consensus.tree=subtree_aus_cons)
 {
    
    cir <- setNames (subdata_aus[,4], rownames(subdata_aus))
-   aus_cir <- make.simmap (subtree_aus_red, cir, model="ARD", Q="empirical")
+   aus_cir <- make.simmap (subtree_aus, cir, model="ARD", Q="empirical")
    aus_cir_pd <- summary (aus_cir, consensus.tree=subtree_aus_cons)
    
    
@@ -85,7 +85,7 @@ aus_clit_pd <- summary (aus_clit, consensus.tree=subtree_aus_cons)
 {
    
    sup <- setNames (subdata_aus[,5], rownames(subdata_aus))
-   aus_sup <- make.simmap (subtree_aus_red, sup, model="ARD", Q="empirical")
+   aus_sup <- make.simmap (subtree_aus, sup, model="ARD", Q="empirical")
    aus_sup_pd <- summary (aus_sup, consensus.tree=subtree_aus_cons)
    
    
