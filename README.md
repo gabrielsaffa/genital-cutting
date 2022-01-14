@@ -1,2 +1,2 @@
-# genital-mutilations
-# Global phylogenetic analysis reveals multiple origins and functions of genital mutilations
+# genital-cutting
+# Global phylogenetic analysis reveals multiple origins and socio-ecological correlates of genital cutting
