@@ -1,6 +1,6 @@
-#########################################################################################################
-### R script for: Global phylogenetic analysis reveals multiple origins of genital mutilation/cutting ###
-#########################################################################################################
+###############################################################################################################################
+### R script  for: Global phylogenetic analysis reveals multiple origins and socio-ecological correlates of genital cutting ###
+###############################################################################################################################
 
 ### predictor selection, data coding and missing values imputation ###
 
