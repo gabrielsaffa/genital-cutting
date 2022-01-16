@@ -100,7 +100,7 @@ dev.off()
 ### NOTE: code for creating Supplementary Figs 3-17 is part of the scripts for phylogenetic analyses; Fig 2 and Supplementary Fig 2 were, after plotting individual phylogenies, created in a graphical software
 
 
-### Fig 3 and Supplementary Fig 8 ###
+### Fig 3 and Extended Data Fig 3 ###
 ### Fig 3 ###
 
 {
