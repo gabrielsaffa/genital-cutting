@@ -22,9 +22,9 @@ str (GM_SCCS_data)
 
 ### marriage system ###
 
-vif (glm(MGM ~ marit_comp + dist + cult_polyg + polyg + std_polyg, data=GM_SCCS_data, family="binomial")) # remove std_polyg 
-vif (glm(MGM ~ marit_comp + dist + cult_polyg + polyg, data=GM_SCCS_data, family="binomial")) # remove polyg 
-vif (glm(MGM ~ marit_comp + dist + cult_polyg, data=GM_SCCS_data, family="binomial")) # values <3
+vif (glm(MGC ~ marit_comp + dist + cult_polyg + polyg + std_polyg, data=GM_SCCS_data, family="binomial")) # remove std_polyg 
+vif (glm(MGC ~ marit_comp + dist + cult_polyg + polyg, data=GM_SCCS_data, family="binomial")) # remove polyg 
+vif (glm(MGC ~ marit_comp + dist + cult_polyg, data=GM_SCCS_data, family="binomial")) # values <3
 
 GM_SCCS_imp <- imputeCA (GM_SCCS_data, ncp=2, threshold=1e-08, maxiter=1000) # we need to impute missing values before proceeding to correspondence analysis (CA); imputed values have no influence on CA
 
@@ -34,13 +34,13 @@ GM_SCCS_ca$col$contrib # assess the contribution of each variable; although both
 
 ### sexual behavior ###
 
-vif (glm(MGM ~ ext_sex + ext_aff + freq_ext_sex, data=GM_SCCS_data, family="binomial")) # values <3
+vif (glm(MGC ~ ext_sex + ext_aff + freq_ext_sex, data=GM_SCCS_data, family="binomial")) # values <3
 
 GM_SCCS_ca <- CA (GM_SCCS_imp[,13:15], graph=TRUE)
 summary (GM_SCCS_ca) 
 GM_SCCS_ca$col$contrib # we choose extramarital affairs
 
-vif (glm(MGM ~ sex_norms + segr_adol + sex_att + male_segr, data=GM_SCCS_data, family="binomial")) # values <3
+vif (glm(MGC ~ sex_norms + segr_adol + sex_att + male_segr, data=GM_SCCS_data, family="binomial")) # values <3
 
 GM_SCCS_ca <- CA (GM_SCCS_imp[,16:19], graph=TRUE)
 summary (GM_SCCS_ca) 
@@ -48,7 +48,7 @@ GM_SCCS_ca$col$contrib # we choose segregation of adolescent boys and premarital
 
 ### residence ###
 
-vif (glm(MGM ~ trans_resid + marit_resid + marit_resid_pp, data=GM_SCCS_data, family="binomial")) # values <3
+vif (glm(MGC ~ trans_resid + marit_resid + marit_resid_pp, data=GM_SCCS_data, family="binomial")) # values <3
 
 GM_SCCS_ca <- CA (GM_SCCS_imp[,20:22], graph=TRUE)
 summary (GM_SCCS_ca) 
@@ -56,7 +56,7 @@ GM_SCCS_ca$col$contrib # we choose transfer of residence
 
 ### descent ###
 
-vif (glm(MGM ~ desc + desc_rules + desc_corp_gr, data=GM_SCCS_data, family="binomial")) # values <3
+vif (glm(MGC ~ desc + desc_rules + desc_corp_gr, data=GM_SCCS_data, family="binomial")) # values <3
 
 GM_SCCS_ca <- CA (GM_SCCS_imp[,23:25], graph=TRUE)
 summary (GM_SCCS_ca) 
@@ -64,7 +64,7 @@ GM_SCCS_ca$col$contrib # we choose descent: major type
 
 ### subsistence ###
 
-vif (glm(MGM ~ sub_econ + agric_inten + prin_subs, data=GM_SCCS_data, family="binomial")) # values <3
+vif (glm(MGC ~ sub_econ + agric_inten + prin_subs, data=GM_SCCS_data, family="binomial")) # values <3
 
 GM_SCCS_ca <- CA (GM_SCCS_imp[,26:28], graph=TRUE)
 summary (GM_SCCS_ca) 
@@ -72,7 +72,7 @@ GM_SCCS_ca$col$contrib # we choose subsistence economy and agriculture: intensit
 
 ### marriage practices ###
 
-vif (glm(MGM ~ marr_arr_m + marr_arr_f + marr_tr, data=GM_SCCS_data, family="binomial")) # values <3
+vif (glm(MGC ~ marr_arr_m + marr_arr_f + marr_tr, data=GM_SCCS_data, family="binomial")) # values <3
 
 GM_SCCS_ca <- CA (GM_SCCS_imp[,29:31], graph=TRUE)
 summary (GM_SCCS_ca) 
@@ -80,8 +80,8 @@ GM_SCCS_ca$col$contrib # we choose marriage transactions
 
 ### social stratification ###
 
-vif (glm(MGM ~ juris_hier + class + caste + soc_strat, data=GM_SCCS_data, family="binomial")) # remove soc_strat
-vif (glm(MGM ~ juris_hier + class + caste, data=GM_SCCS_data, family="binomial")) # values <3
+vif (glm(MGC ~ juris_hier + class + caste + soc_strat, data=GM_SCCS_data, family="binomial")) # remove soc_strat
+vif (glm(MGC ~ juris_hier + class + caste, data=GM_SCCS_data, family="binomial")) # values <3
 
 GM_SCCS_ca <- CA (GM_SCCS_imp[,33:35], graph=TRUE)
 summary (GM_SCCS_ca) 
@@ -89,13 +89,13 @@ GM_SCCS_ca$col$contrib # we choose all three variables
 
 ### rituals ###
 
-vif (glm(MGM ~ scars_m + scars_f, data=GM_SCCS_data, family="binomial")) # values <3
+vif (glm(MGC ~ scars_m + scars_f, data=GM_SCCS_data, family="binomial")) # values <3
 
 # both variables are important and will be included in the study
 
 ### religion ###
 
-vif (glm(MGM ~ high_gods + islam + world_rel, data=GM_SCCS_data, family="binomial")) # values <3
+vif (glm(MGC ~ high_gods + islam + world_rel, data=GM_SCCS_data, family="binomial")) # values <3
 
 GM_SCCS_ca <- CA (GM_SCCS_imp[,39:41], graph=TRUE)
 summary (GM_SCCS_ca) 
