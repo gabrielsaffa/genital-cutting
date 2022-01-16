@@ -19,14 +19,14 @@ GM_EA_data <- read.csv ("GM_EA_imputed.csv", header=TRUE, row.names=1)
 GM_EA_tree <- read.tree ("SPT.EA.tre")
 
 
-### FGM ###
+### FGC ###
 ### NOTE: some models gave a warning about increasing 'btol' (bound on the parameter space), which, when increased, in some cases produced unrealistically high estimates and standard errors. Therefore the warning was ignored, which, after the discussion with one of the package authors, should be OK.
 
 {
   
-  # run a global model (i.e. all predictors of FGM considered)
+  # run a global model (i.e. all predictors of FGC considered)
   
-  FGM_mg <- phyloglm (FGM ~ dist + sex_norms + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + class + caste,
+  FGC_mg <- phyloglm (FGC ~ dist + sex_norms + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + class + caste,
                       phy=GM_EA_tree,
                       data=GM_EA_data,
                       boot=0
@@ -35,12 +35,12 @@ GM_EA_tree <- read.tree ("SPT.EA.tre")
   
   # run an intercept-only model
   
-  FGM_m0 <- phyloglm (FGM ~ 1, phy=GM_EA_tree, data=GM_EA_data)
+  FGC_m0 <- phyloglm (FGC ~ 1, phy=GM_EA_tree, data=GM_EA_data)
   
   
   # rum a model based on the mate guarding/paternity uncertainty hypothesis
   
-  FGM_m1 <- phyloglm (FGM ~ dist,
+  FGC_m1 <- phyloglm (FGC ~ dist,
                       phy=GM_EA_tree,
                       data=GM_EA_data,
                       boot=0
@@ -49,7 +49,7 @@ GM_EA_tree <- read.tree ("SPT.EA.tre")
   
   # run a model based on the fraternal interest groups hypothesis
   
-  FGM_m2 <- phyloglm (FGM ~ patriloc + patrilin + past + ext_agric + int_agric + bride_pr,
+  FGC_m2 <- phyloglm (FGC ~ patriloc + patrilin + past + ext_agric + int_agric + bride_pr,
                       phy=GM_EA_tree,
                       data=GM_EA_data,
                       boot=0
@@ -58,7 +58,7 @@ GM_EA_tree <- read.tree ("SPT.EA.tre")
   
   # run a model based on the male mating variance hypothesis
   
-  FGM_m3 <- phyloglm (FGM ~ class,
+  FGC_m3 <- phyloglm (FGC ~ class,
                       phy=GM_EA_tree,
                       data=GM_EA_data,
                       boot=0
@@ -66,7 +66,7 @@ GM_EA_tree <- read.tree ("SPT.EA.tre")
   
   # fit model with pastoralism based on the mate guarding/paternity uncertainty hypothesis
   
-  FGM_m4 <- phyloglm (FGM ~ past,
+  FGC_m4 <- phyloglm (FGC ~ past,
                       phy=GM_EA_tree,
                       data=GM_EA_data,
                       boot=0
@@ -74,7 +74,7 @@ GM_EA_tree <- read.tree ("SPT.EA.tre")
   
   # fit model with bride-price based on the market value hypothesis
   
-  FGM_m5 <- phyloglm (FGM ~ bride_pr,
+  FGC_m5 <- phyloglm (FGC ~ bride_pr,
                       phy=GM_EA_tree,
                       data=GM_EA_data,
                       boot=0
@@ -82,7 +82,7 @@ GM_EA_tree <- read.tree ("SPT.EA.tre")
   
   # we fit our own model
   
-  FGM_m6 <- phyloglm (FGM ~ dist + sex_norms + patriloc + patrilin + past + bride_pr + caste,
+  FGC_m6 <- phyloglm (FGC ~ dist + sex_norms + patriloc + patrilin + past + bride_pr + caste,
                       phy=GM_EA_tree,
                       data=GM_EA_data,
                       boot=0
@@ -94,9 +94,9 @@ GM_EA_tree <- read.tree ("SPT.EA.tre")
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5","m6")
-aic <- round(c(FGM_mg$aic,FGM_m0$aic,FGM_m1$aic,FGM_m2$aic,FGM_m3$aic,FGM_m4$aic,FGM_m5$aic,FGM_m6$aic),2) # get AIC
-ll <- round(c(FGM_mg$logLik,FGM_m0$logLik,FGM_m1$logLik,FGM_m2$logLik,FGM_m3$logLik,FGM_m4$logLik,FGM_m5$logLik,FGM_m6$logLik),2) # get log-likelihood values
-w_aic <- round (Weights(c(FGM_mg$aic,FGM_m0$aic,FGM_m1$aic,FGM_m2$aic,FGM_m3$aic,FGM_m4$aic,FGM_m5$aic,FGM_m6$aic)),2) # get AIC weights
+aic <- round(c(FGC_mg$aic,FGC_m0$aic,FGC_m1$aic,FGC_m2$aic,FGC_m3$aic,FGC_m4$aic,FGC_m5$aic,FGC_m6$aic),2) # get AIC
+ll <- round(c(FGC_mg$logLik,FGC_m0$logLik,FGC_m1$logLik,FGC_m2$logLik,FGC_m3$logLik,FGC_m4$logLik,FGC_m5$logLik,FGC_m6$logLik),2) # get log-likelihood values
+w_aic <- round (Weights(c(FGC_mg$aic,FGC_m0$aic,FGC_m1$aic,FGC_m2$aic,FGC_m3$aic,FGC_m4$aic,FGC_m5$aic,FGC_m6$aic)),2) # get AIC weights
 
 # get delta AIC 
 
@@ -116,13 +116,13 @@ aic_all
 
 ### compute bootstrapped parameter estimates and confidence intervals for the model/s selected by delta AIC and AIC weight
 
-FGM_m4 <- phyloglm (FGM ~ dist + sex_norms + patriloc + patrilin + past + bride_pr + caste,
+FGC_m4 <- phyloglm (FGC ~ dist + sex_norms + patriloc + patrilin + past + bride_pr + caste,
                     phy=GM_EA_tree,
                     data=GM_EA_data,
                     boot=2000
 )
 
-FGM_mg <- phyloglm (FGM ~ dist + sex_norms + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + class + caste,
+FGC_mg <- phyloglm (FGC ~ dist + sex_norms + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + class + caste,
                     phy=GM_EA_tree,
                     data=GM_EA_data,
                     boot=2000
@@ -131,28 +131,28 @@ FGM_mg <- phyloglm (FGM ~ dist + sex_norms + patriloc + patrilin + past + ext_ag
 
 ### get bootstrapped values
 
-est <- FGM_m4$coefficients # coefficients
-sd <- FGM_m4$sd # SD
-b_est <- as.data.frame (FGM_m4$bootmean) # bootstrapped coefficients
+est <- FGC_m4$coefficients # coefficients
+sd <- FGC_m4$sd # SD
+b_est <- as.data.frame (FGC_m4$bootmean) # bootstrapped coefficients
 b_est <- b_est[-9, ] # remove alpha
-b_ci <- as.data.frame (t(FGM_m4$bootconfint95)) # bootstrapped confidence intervals
+b_ci <- as.data.frame (t(FGC_m4$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-9, ] # remove alpha
-fgm_m4 <- cbind (est, sd, b_est, b_ci)
-fgm_m4 <- fgm_m4[-1, ] # remove intercept
+fgc_m4 <- cbind (est, sd, b_est, b_ci)
+fgc_m4 <- fgc_m4[-1, ] # remove intercept
 
 # repeat for the other model
 
-est <- FGM_mg$coefficients 
-sd <- FGM_mg$sd # SD
-b_est <- as.data.frame (FGM_mg$bootmean) 
+est <- FGC_mg$coefficients 
+sd <- FGC_mg$sd # SD
+b_est <- as.data.frame (FGC_mg$bootmean) 
 b_est <- b_est[-9, ] 
-b_ci <- as.data.frame (t(FGM_mg$bootconfint95)) 
+b_ci <- as.data.frame (t(FGC_mg$bootconfint95)) 
 b_ci <- b_ci[-9, ] 
-fgm_mg <- cbind (est, sd, b_est, b_ci) 
-fgm_mg <- fgm_mg[-1, ] 
-fgm_all <- round(rbind (fgm_m4, fgm_mg),2) # combine
+fgc_mg <- cbind (est, sd, b_est, b_ci) 
+fgc_mg <- fgc_mg[-1, ] 
+fgc_all <- round(rbind (fgc_m4, fgc_mg),2) # combine
 
-write.csv (fgm_all, file="fgm_all_EA.csv") # store the values
+write.csv (fgc_all, file="fgc_all_EA.csv") # store the values
 
 
 ### clitoridectomy ###
@@ -494,42 +494,42 @@ infib_all <- round(rbind (infib_m3, infib_m4),2) # combine
 write.csv (infib_all, file="infib_all_EA.csv") # store the values
 
 
-### MGM ###
+### MGC ###
 
 {
   
-  MGM_mg <- phyloglm (MGM ~ dist + segr_adol + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + chiefdoms + states + caste + high_gods,
+  MGC_mg <- phyloglm (MGC ~ dist + segr_adol + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + chiefdoms + states + caste + high_gods,
                       phy=GM_EA_tree,
                       data=GM_EA_data,
                       boot=0
   )
 
   
-  MGM_m0 <- phyloglm (MGM ~ 1, phy=GM_EA_tree, data=GM_EA_data)
+  MGC_m0 <- phyloglm (MGC ~ 1, phy=GM_EA_tree, data=GM_EA_data)
   
   
-  MGM_m1 <- phyloglm (MGM ~ dist,
+  MGC_m1 <- phyloglm (MGC ~ dist,
                       phy=GM_EA_tree,
                       data=GM_EA_data,
                       boot=0
   )
   
   
-  MGM_m2 <- phyloglm (MGM ~ patriloc + patrilin + past + ext_agric + int_agric + bride_pr,
+  MGC_m2 <- phyloglm (MGC ~ patriloc + patrilin + past + ext_agric + int_agric + bride_pr,
                       phy=GM_EA_tree,
                       data=GM_EA_data,
                       boot=0
   )
   
   
-  MGM_m3 <- phyloglm (MGM ~ dist + segr_adol + patriloc + patrilin,
+  MGC_m3 <- phyloglm (MGC ~ dist + segr_adol + patriloc + patrilin,
                       phy=GM_EA_tree,
                       data=GM_EA_data,
                       boot=0
   )
   
   
-  MGM_m4 <- phyloglm (MGM ~ dist + segr_adol + patriloc + patrilin + chiefdoms + caste + high_gods,
+  MGC_m4 <- phyloglm (MGC ~ dist + segr_adol + patriloc + patrilin + chiefdoms + caste + high_gods,
                       phy=GM_EA_tree,
                       data=GM_EA_data,
                       boot=0
@@ -541,9 +541,9 @@ write.csv (infib_all, file="infib_all_EA.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4")
-aic <- round(c(MGM_mg$aic,MGM_m0$aic,MGM_m1$aic,MGM_m2$aic,MGM_m3$aic,MGM_m4$aic),2) # get AIC
-ll <- round(c(MGM_mg$logLik,MGM_m0$logLik,MGM_m1$logLik,MGM_m2$logLik,MGM_m3$logLik,MGM_m4$logLik),2) # get log-likelihood values
-w_aic <- round (Weights(c(MGM_mg$aic,MGM_m0$aic,MGM_m1$aic,MGM_m2$aic,MGM_m3$aic,MGM_m4$aic)),2) # get AIC weights
+aic <- round(c(MGC_mg$aic,MGC_m0$aic,MGC_m1$aic,MGC_m2$aic,MGC_m3$aic,MGC_m4$aic),2) # get AIC
+ll <- round(c(MGC_mg$logLik,MGC_m0$logLik,MGC_m1$logLik,MGC_m2$logLik,MGC_m3$logLik,MGC_m4$logLik),2) # get log-likelihood values
+w_aic <- round (Weights(c(MGC_mg$aic,MGC_m0$aic,MGC_m1$aic,MGC_m2$aic,MGC_m3$aic,MGC_m4$aic)),2) # get AIC weights
 
 # get delta AIC 
 
@@ -563,7 +563,7 @@ aic_all
 
 ### compute bootstrapped parameter estimates and confidence intervals for the model/s selected by delta AIC and AIC weight
 
-MGM_mg <- phyloglm (MGM ~ dist + segr_adol + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + chiefdoms + states + caste + high_gods,
+MGC_mg <- phyloglm (MGC ~ dist + segr_adol + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + chiefdoms + states + caste + high_gods,
                     phy=GM_EA_tree,
                     data=GM_EA_data,
                     boot=2000
@@ -572,17 +572,17 @@ MGM_mg <- phyloglm (MGM ~ dist + segr_adol + patriloc + patrilin + past + ext_ag
 
 ### get bootstrapped values
 
-est <- MGM_mg$coefficients 
-sd <- MGM_mg$sd
-b_est <- as.data.frame (MGM_mg$bootmean) 
+est <- MGC_mg$coefficients 
+sd <- MGC_mg$sd
+b_est <- as.data.frame (MGC_mg$bootmean) 
 b_est <- b_est[-14, ] 
-b_ci <- as.data.frame (t(MGM_mg$bootconfint95)) 
+b_ci <- as.data.frame (t(MGC_mg$bootconfint95)) 
 b_ci <- b_ci[-14, ] 
-mgm_mg <- cbind (est, sd, b_est, b_ci) 
-mgm_mg <- mgm_mg[-1, ] 
-mgm_mg <- round(rbind (mgm_mg),2)
+mgc_mg <- cbind (est, sd, b_est, b_ci) 
+mgc_mg <- mgc_mg[-1, ] 
+mgc_mg <- round(rbind (mgc_mg),2)
 
-write.csv (mgm_mg, file="mgm_mg_EA.csv") # store the values
+write.csv (mgc_mg, file="mgc_mg_EA.csv") # store the values
 
 
 ### circumcision ###
@@ -791,49 +791,49 @@ GM_SCCS_data <- read.csv ("GM_SCCS_imputed.csv", header=TRUE, row.names=1)
 GM_SCCS_tree <- read.tree ("SPT.SCCS.tre")
 
 
-### FGM ###
+### FGC ###
 
 {
   
-  FGM_mg <- phyloglm (FGM ~ dist + ext_aff + sex_norms + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + class + caste + scars_f,
+  FGC_mg <- phyloglm (FGC ~ dist + ext_aff + sex_norms + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + class + caste + scars_f,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
   )
 
   
-  FGM_m0 <- phyloglm (FGM ~ 1, phy=GM_SCCS_tree, data=GM_SCCS_data, log.alpha.bound=10)
+  FGC_m0 <- phyloglm (FGC ~ 1, phy=GM_SCCS_tree, data=GM_SCCS_data, log.alpha.bound=10)
   
   
-  FGM_m1 <- phyloglm (FGM ~ dist + ext_aff,
+  FGC_m1 <- phyloglm (FGC ~ dist + ext_aff,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
   )
   
   
-  FGM_m2 <- phyloglm (FGM ~ patriloc + patrilin + past + ext_agric + int_agric + bride_pr,
+  FGC_m2 <- phyloglm (FGC ~ patriloc + patrilin + past + ext_agric + int_agric + bride_pr,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
   )
   
   
-  FGM_m3 <- phyloglm (FGM ~ class,
+  FGC_m3 <- phyloglm (FGC ~ class,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
   )
   
   
-  FGM_m4 <- phyloglm (FGM ~ past,
+  FGC_m4 <- phyloglm (FGC ~ past,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
   )
   
   
-  FGM_m5 <- phyloglm (FGM ~ bride_pr,
+  FGC_m5 <- phyloglm (FGC ~ bride_pr,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
@@ -841,14 +841,14 @@ GM_SCCS_tree <- read.tree ("SPT.SCCS.tre")
   
   # here we fit also a model with female scarifications
   
-  FGM_m6 <- phyloglm (FGM ~ scars_f,
+  FGC_m6 <- phyloglm (FGC ~ scars_f,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
   )
 
   
-  FGM_m7 <- phyloglm (FGM ~ dist + ext_aff + sex_norms + patriloc + patrilin + past + bride_pr + caste,
+  FGC_m7 <- phyloglm (FGC ~ dist + ext_aff + sex_norms + patriloc + patrilin + past + bride_pr + caste,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
@@ -860,9 +860,9 @@ GM_SCCS_tree <- read.tree ("SPT.SCCS.tre")
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5","m6","m7")
-aic <- round(c(FGM_mg$aic,FGM_m0$aic,FGM_m1$aic,FGM_m2$aic,FGM_m3$aic,FGM_m4$aic,FGM_m5$aic,FGM_m6$aic,FGM_m7$aic),2) # get AIC
-ll <- round(c(FGM_mg$logLik,FGM_m0$logLik,FGM_m1$logLik,FGM_m2$logLik,FGM_m3$logLik,FGM_m4$logLik,FGM_m5$logLik,FGM_m6$logLik,FGM_m7$logLik),2) # get log-likelihood values
-w_aic <- round (Weights(c(FGM_mg$aic,FGM_m0$aic,FGM_m1$aic,FGM_m2$aic,FGM_m3$aic,FGM_m4$aic,FGM_m5$aic,FGM_m6$aic,FGM_m7$aic)),2) # get AIC weights
+aic <- round(c(FGC_mg$aic,FGC_m0$aic,FGC_m1$aic,FGC_m2$aic,FGC_m3$aic,FGC_m4$aic,FGC_m5$aic,FGC_m6$aic,FGC_m7$aic),2) # get AIC
+ll <- round(c(FGC_mg$logLik,FGC_m0$logLik,FGC_m1$logLik,FGC_m2$logLik,FGC_m3$logLik,FGC_m4$logLik,FGC_m5$logLik,FGC_m6$logLik,FGC_m7$logLik),2) # get log-likelihood values
+w_aic <- round (Weights(c(FGC_mg$aic,FGC_m0$aic,FGC_m1$aic,FGC_m2$aic,FGC_m3$aic,FGC_m4$aic,FGC_m5$aic,FGC_m6$aic,FGC_m7$aic)),2) # get AIC weights
 
 # get delta AIC 
 
@@ -882,13 +882,13 @@ aic_all
 
 ### compute bootstrapped parameter estimates and confidence intervals for the model/s selected by delta AIC and AIC weight
 
-FGM_m5 <- phyloglm (FGM ~ bride_pr,
+FGC_m5 <- phyloglm (FGC ~ bride_pr,
                     phy=GM_SCCS_tree,
                     data=GM_SCCS_data,
                     boot=2000
 )
 
-FGM_m7 <- phyloglm (FGM ~ dist + ext_aff + sex_norms + patriloc + patrilin + past + bride_pr + caste,
+FGC_m7 <- phyloglm (FGC ~ dist + ext_aff + sex_norms + patriloc + patrilin + past + bride_pr + caste,
                     phy=GM_SCCS_tree,
                     data=GM_SCCS_data,
                     boot=2000
@@ -897,26 +897,26 @@ FGM_m7 <- phyloglm (FGM ~ dist + ext_aff + sex_norms + patriloc + patrilin + pas
 
 ### get bootstrapped values
 
-est <- FGM_m5$coefficients # coefficients
-sd <- FGM_m5$sd # SD
-b_est <- as.data.frame (FGM_m5$bootmean) # bootstrapped coefficients
+est <- FGC_m5$coefficients # coefficients
+sd <- FGC_m5$sd # SD
+b_est <- as.data.frame (FGC_m5$bootmean) # bootstrapped coefficients
 b_est <- b_est[-3, ] # remove alpha
-b_ci <- as.data.frame (t(FGM_m5$bootconfint95)) # bootstrapped confidence intervals
+b_ci <- as.data.frame (t(FGC_m5$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-3, ] # remove alpha
-fgm_m5 <- cbind (est, sd, b_est, b_ci)
-fgm_m5 <- fgm_m5[-1, ] # remove intercept
+fgc_m5 <- cbind (est, sd, b_est, b_ci)
+fgc_m5 <- fgc_m5[-1, ] # remove intercept
 
 #
 
-est <- FGM_m7$coefficients 
-sd <- FGM_m7$sd # SD
-b_est <- as.data.frame (FGM_m7$bootmean) 
+est <- FGC_m7$coefficients 
+sd <- FGC_m7$sd # SD
+b_est <- as.data.frame (FGC_m7$bootmean) 
 b_est <- b_est[-10, ] 
-b_ci <- as.data.frame (t(FGM_m7$bootconfint95)) 
+b_ci <- as.data.frame (t(FGC_m7$bootconfint95)) 
 b_ci <- b_ci[-10, ] 
-fgm_m7 <- cbind (est, sd, b_est, b_ci) 
-fgm_m7 <- fgm_m7[-1, ] 
-fgm_all <- round(rbind (fgm_m5,fgm_m7),2) # combine
+fgc_m7 <- cbind (est, sd, b_est, b_ci) 
+fgc_m7 <- fgc_m7[-1, ] 
+fgc_all <- round(rbind (fgc_m5,fgc_m7),2) # combine
 
 write.csv (fgm_all, file="fgm_all_SCCS.csv") # store the values
 
@@ -1369,28 +1369,28 @@ infib_all <- round(rbind (infib_m5,infib_m1,infib_m4,infib_m7),2) # combine
 write.csv (infib_all, file="infib_all_SCCS.csv") # store the values
 
 
-### MGM ###
+### MGC ###
 
 {
   
-  MGM_mg <- phyloglm (MGM ~ dist + ext_aff + segr_adol + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + ext_war + forag + class + chiefdoms + states + caste + scars_m,
+  MGC_mg <- phyloglm (MGC ~ dist + ext_aff + segr_adol + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + ext_war + forag + class + chiefdoms + states + caste + scars_m,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
   )
   
   
-  MGM_m0 <- phyloglm (MGM ~ 1, phy=GM_SCCS_tree, data=GM_SCCS_data, log.alpha.bound=10)
+  MGC_m0 <- phyloglm (MGC ~ 1, phy=GM_SCCS_tree, data=GM_SCCS_data, log.alpha.bound=10)
   
   
-  MGM_m1 <- phyloglm (MGM ~ dist + ext_aff,
+  MGC_m1 <- phyloglm (MGC ~ dist + ext_aff,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
   )
   
   
-  MGM_m2 <- phyloglm (MGM ~ patriloc + patrilin + past + ext_agric + int_agric + bride_pr,
+  MGC_m2 <- phyloglm (MGC ~ patriloc + patrilin + past + ext_agric + int_agric + bride_pr,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
@@ -1399,7 +1399,7 @@ write.csv (infib_all, file="infib_all_SCCS.csv") # store the values
   
   # we fit a model based on Sosis et al. (2007) and add chiefdoms and states as they suggest
   
-  MGM_m3 <- phyloglm (MGM ~ ext_war + class + forag + chiefdoms + states,
+  MGC_m3 <- phyloglm (MGC ~ ext_war + class + forag + chiefdoms + states,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
@@ -1407,14 +1407,14 @@ write.csv (infib_all, file="infib_all_SCCS.csv") # store the values
   
   # we also fit a model with male scarifications
   
-  MGM_m4 <- phyloglm (MGM ~ scars_m,
+  MGC_m4 <- phyloglm (MGC ~ scars_m,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
   )
   
   
-  MGM_m5 <- phyloglm (MGM ~ dist + ext_aff + segr_adol + patriloc + patrilin + chiefdoms + caste,
+  MGC_m5 <- phyloglm (MGC ~ dist + ext_aff + segr_adol + patriloc + patrilin + chiefdoms + caste,
                       phy=GM_SCCS_tree,
                       data=GM_SCCS_data,
                       boot=0
@@ -1426,9 +1426,9 @@ write.csv (infib_all, file="infib_all_SCCS.csv") # store the values
 ### get likelihoods, AIC, delta AIC and AIC weights
 
 model <- c("mg","m0","m1","m2","m3","m4","m5")
-aic <- round(c(MGM_mg$aic,MGM_m0$aic,MGM_m1$aic,MGM_m2$aic,MGM_m3$aic,MGM_m4$aic,MGM_m5$aic),2) # get AIC
-ll <- round(c(MGM_mg$logLik,MGM_m0$logLik,MGM_m1$logLik,MGM_m2$logLik,MGM_m3$logLik,MGM_m4$logLik,MGM_m5$logLik),2) # get log-likelihood values
-w_aic <- round (Weights(c(MGM_mg$aic,MGM_m0$aic,MGM_m1$aic,MGM_m2$aic,MGM_m3$aic,MGM_m4$aic,MGM_m5$aic)),2) # get AIC weights
+aic <- round(c(MGC_mg$aic,MGC_m0$aic,MGC_m1$aic,MGC_m2$aic,MGC_m3$aic,MGC_m4$aic,MGC_m5$aic),2) # get AIC
+ll <- round(c(MGC_mg$logLik,MGC_m0$logLik,MGC_m1$logLik,MGC_m2$logLik,MGC_m3$logLik,MGC_m4$logLik,MGC_m5$logLik),2) # get log-likelihood values
+w_aic <- round (Weights(c(MGC_mg$aic,MGC_m0$aic,MGC_m1$aic,MGC_m2$aic,MGC_m3$aic,MGC_m4$aic,MGC_m5$aic)),2) # get AIC weights
 
 # get delta AIC 
 
@@ -1448,7 +1448,7 @@ aic_all
 
 ### compute bootstrapped parameter estimates and confidence intervals for the model/s selected by delta AIC and AIC weight
 
-MGM_m5 <- phyloglm (MGM ~ dist + ext_aff + segr_adol + patriloc + patrilin + chiefdoms + caste,
+MGC_m5 <- phyloglm (MGC ~ dist + ext_aff + segr_adol + patriloc + patrilin + chiefdoms + caste,
                     phy=GM_SCCS_tree,
                     data=GM_SCCS_data,
                     boot=2000
@@ -1457,17 +1457,17 @@ MGM_m5 <- phyloglm (MGM ~ dist + ext_aff + segr_adol + patriloc + patrilin + chi
 
 ### get bootstrapped values
 
-est <- MGM_m5$coefficients # coefficients
-sd <- MGM_m5$sd
-b_est <- as.data.frame (MGM_m5$bootmean) # bootstrapped coefficients
+est <- MGC_m5$coefficients # coefficients
+sd <- MGC_m5$sd
+b_est <- as.data.frame (MGC_m5$bootmean) # bootstrapped coefficients
 b_est <- b_est[-9, ] # remove alpha
-b_ci <- as.data.frame (t(MGM_m5$bootconfint95)) # bootstrapped confidence intervals
+b_ci <- as.data.frame (t(MGC_m5$bootconfint95)) # bootstrapped confidence intervals
 b_ci <- b_ci[-9, ] # remove alpha
-mgm_m5 <- cbind (est, sd, b_est, b_ci)
-mgm_m5 <- mgm_m5[-1, ] # remove intercept
-mgm_m5 <- round(rbind (mgm_m5),2)
+mgc_m5 <- cbind (est, sd, b_est, b_ci)
+mgc_m5 <- mgc_m5[-1, ] # remove intercept
+mgc_m5 <- round(rbind (mgc_m5),2)
 
-write.csv (mgm_m5, file="mgm_m5_SCCS.csv") # store the values
+write.csv (mgc_m5, file="mgc_m5_SCCS.csv") # store the values
 
 
 ### circumcision ###
