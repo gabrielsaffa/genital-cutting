@@ -113,16 +113,16 @@ subdata_ban <- read.csv ("sample-grollemund---spt.csv", header=TRUE, row.names=1
 subtree_ban_cons <- ls.consensus (subtree_ban)
 
 
-### FGM ###
+### FGC ###
 
 {
 
-FGM <- setNames (subdata_ban[,2], rownames(subdata_ban))
-ban_FGM <- make.simmap (subtree_ban, FGM, model="ARD", Q="empirical")
-ban_FGM_pd <- summary (ban_FGM, consensus.tree=subtree_ban_cons)
+FGC <- setNames (subdata_ban[,2], rownames(subdata_ban))
+ban_FGC <- make.simmap (subtree_ban, FGC, model="ARD", Q="empirical")
+ban_FGC_pd <- summary (ban_FGC, consensus.tree=subtree_ban_cons)
 
-cols <- setNames (c("gray85","blue"), levels(as.factor(FGM)))
-plot (ban_FGM_pd,
+cols <- setNames (c("gray85","blue"), levels(as.factor(FGC)))
+plot (ban_FGC_pd,
       offset=0.5,
       fsize=0.6,
       lwd=1,
@@ -223,36 +223,6 @@ add.simmap.legend (x=0,
    add.simmap.legend (x=0,
                       y=85,
                       colors=setNames(c("gold", "gray85"),
-                                      c("present", "absent")),
-                      prompt=FALSE,
-                      vertical=TRUE,
-                      shape="circle",
-                      cex=0.3
-   )
-   
-}
-
-
-### MGM ###
-
-{
-   
-   MGM <- setNames (subdata_ban[,6], rownames(subdata_ban))
-   ban_MGM <- make.simmap (subtree_ban, MGM, model="ARD", Q="empirical")
-   ban_MGM_pd <- summary (ban_MGM, consensus.tree=subtree_ban_cons)
-   
-   cols <- setNames (c("gray85","red1"), levels(as.factor(MGM)))
-   plot (ban_MGM_pd,
-         offset=0.5,
-         fsize=0.6,
-         lwd=1,
-         cex=c(0.3,0.3),
-         colors=cols
-   )
-   
-   add.simmap.legend (x=0,
-                      y=85,
-                      colors=setNames(c("red1", "gray85"),
                                       c("present", "absent")),
                       prompt=FALSE,
                       vertical=TRUE,
