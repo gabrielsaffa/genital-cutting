@@ -19,11 +19,11 @@ GM_EA_tree <- read.tree ("SPT.EA.tre")
 GM_EA_tree_star <- compute.brlen (GM_EA_tree, method="Grafen", power=0.0001) # convert the tree into a star-like phylogeny
 
 
-### FGM ###
+### FGC ###
   
 # fit the phylogenetic model
 
-FGM_m4 <- phyloglm (FGM ~ dist + sex_norms + patriloc + patrilin + past + bride_pr + caste,
+FGC_m4 <- phyloglm (FGC ~ dist + sex_norms + patriloc + patrilin + past + bride_pr + caste,
                     phy=GM_EA_tree,
                     data=GM_EA_data,
                     boot=0
@@ -31,32 +31,32 @@ FGM_m4 <- phyloglm (FGM ~ dist + sex_norms + patriloc + patrilin + past + bride_
 
 # fit the same model but with a star-like phylogeny
 
-FGM_m4_nophy <- phyloglm (FGM ~ dist + sex_norms + patriloc + patrilin + past + bride_pr + caste, 
+FGC_m4_nophy <- phyloglm (FGC ~ dist + sex_norms + patriloc + patrilin + past + bride_pr + caste, 
                           phy=GM_EA_tree_star,
                           data=GM_EA_data,
                           boot=0
 )
 
-round (R2.lik (FGM_m4),2) # compute the total 'variance explained' of the phylogenetic model (predictors + phylogeny)
-round (R2.lik (FGM_m4, FGM_m4_nophy),2) # what is the amount of the 'variance explained' by the phylogeny alone?
+round (R2.lik (FGC_m4),2) # compute the total 'variance explained' of the phylogenetic model (predictors + phylogeny)
+round (R2.lik (FGC_m4, FGC_m4_nophy),2) # what is the amount of the 'variance explained' by the phylogeny alone?
 
 #
 
-FGM_mg <- phyloglm (FGM ~ dist + sex_norms + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + class + caste,
+FGC_mg <- phyloglm (FGC ~ dist + sex_norms + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + class + caste,
                     phy=GM_EA_tree,
                     data=GM_EA_data,
                     boot=0
 )
 
 
-FGM_mg_nophy <- phyloglm (FGM ~ dist + sex_norms + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + class + caste,
+FGC_mg_nophy <- phyloglm (FGC ~ dist + sex_norms + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + class + caste,
                     phy=GM_EA_tree_star,
                     data=GM_EA_data,
                     boot=0
 )
 
-round (R2.lik (FGM_mg),2) 
-round (R2.lik (FGM_m4, FGM_mg_nophy),2)
+round (R2.lik (FGC_mg),2) 
+round (R2.lik (FGC_m4, FGC_mg_nophy),2)
 
 
 ### clitoridectomy ###
@@ -132,22 +132,22 @@ round (R2.lik (inf_m4),2)
 round (R2.lik (inf_m4, inf_m4_nophy),2)
 
 
-### MGM ###
+### MGC ###
 
-MGM_mg <- phyloglm (MGM ~ dist + segr_adol + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + chiefdoms + states + caste + high_gods,
+MGC_mg <- phyloglm (MGC ~ dist + segr_adol + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + chiefdoms + states + caste + high_gods,
                     phy=GM_EA_tree,
                     data=GM_EA_data,
                     boot=0
 )
 
-MGM_mg_nophy <- phyloglm (MGM ~ dist + segr_adol + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + chiefdoms + states + caste + high_gods,
+MGC_mg_nophy <- phyloglm (MGC ~ dist + segr_adol + patriloc + patrilin + past + ext_agric + int_agric + bride_pr + chiefdoms + states + caste + high_gods,
                     phy=GM_EA_tree_star,
                     data=GM_EA_data,
                     boot=0
 )
 
-round (R2.lik (MGM_mg),2) 
-round (R2.lik (MGM_mg, MGM_mg_nophy),2)
+round (R2.lik (MGC_mg),2) 
+round (R2.lik (MGC_mg, MGC_mg_nophy),2)
 
 
 ### circumcision ###
@@ -212,40 +212,40 @@ GM_SCCS_tree <- read.tree ("SPT.SCCS.tre")
 GM_SCCS_tree_star <- compute.brlen (GM_SCCS_tree, method="Grafen", power=0.0001) # convert the tree into a star-like phylogeny
 
 
-### FGM ###
+### FGC ###
 
-FGM_m5 <- phyloglm (FGM ~ bride_pr,
+FGC_m5 <- phyloglm (FGC ~ bride_pr,
                     phy=GM_SCCS_tree,
                     data=GM_SCCS_data,
                     boot=0
 )
 
-FGM_m5_nophy <- phyloglm (FGM ~ bride_pr,
+FGC_m5_nophy <- phyloglm (FGC ~ bride_pr,
                     phy=GM_SCCS_tree_star,
                     data=GM_SCCS_data,
                     boot=0
 )
 
 
-round (R2.lik (FGM_m5),2) 
-round (R2.lik (FGM_m5, FGM_m5_nophy),2)
+round (R2.lik (FGC_m5),2) 
+round (R2.lik (FGC_m5, FGC_m5_nophy),2)
 
 #
 
-FGM_m7 <- phyloglm (FGM ~ dist + ext_aff + sex_norms + patriloc + patrilin + past + bride_pr + caste,
+FGC_m7 <- phyloglm (FGC ~ dist + ext_aff + sex_norms + patriloc + patrilin + past + bride_pr + caste,
                     phy=GM_SCCS_tree,
                     data=GM_SCCS_data,
                     boot=0
 )
 
-FGM_m7_nophy <- phyloglm (FGM ~ dist + ext_aff + sex_norms + patriloc + patrilin + past + bride_pr + caste,
+FGC_m7_nophy <- phyloglm (FGC ~ dist + ext_aff + sex_norms + patriloc + patrilin + past + bride_pr + caste,
                     phy=GM_SCCS_tree_star,
                     data=GM_SCCS_data,
                     boot=0
 )
 
-round (R2.lik (FGM_m7),2) 
-round (R2.lik (FGM_m7, FGM_m7_nophy),2)
+round (R2.lik (FGC_m7),2) 
+round (R2.lik (FGC_m7, FGC_m7_nophy),2)
 
 
 ### clitoridectomy ###
@@ -397,22 +397,22 @@ round (R2.lik (inf_m7),2)
 round (R2.lik (inf_m7, inf_m7_nophy),2)
 
 
-### MGM ###
+### MGC ###
 
-MGM_m5 <- phyloglm (MGM ~ dist + ext_aff + segr_adol + patriloc + patrilin + chiefdoms + caste,
+MGC_m5 <- phyloglm (MGC ~ dist + ext_aff + segr_adol + patriloc + patrilin + chiefdoms + caste,
                     phy=GM_SCCS_tree,
                     data=GM_SCCS_data,
                     boot=0
 )
 
-MGM_m5_nophy <- phyloglm (MGM ~ dist + ext_aff + segr_adol + patriloc + patrilin + chiefdoms + caste,
+MGC_m5_nophy <- phyloglm (MGC ~ dist + ext_aff + segr_adol + patriloc + patrilin + chiefdoms + caste,
                     phy=GM_SCCS_tree_star,
                     data=GM_SCCS_data,
                     boot=0
 )
 
-round (R2.lik (MGM_m5),2) 
-round (R2.lik (MGM_m5, MGM_m5_nophy),2)
+round (R2.lik (MGC_m5),2) 
+round (R2.lik (MGC_m5, MGC_m5_nophy),2)
 
 
 ### circumcision ###
