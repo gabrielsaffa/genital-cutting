@@ -60,7 +60,7 @@ legend (380,80,
 dev.off()
 
 
-### Supplementary Fig 1 ###
+### Extended Data Fig 1 ###
 
 par(mfrow=c(3,2), mar=c(2,2,5,2))
 
@@ -105,20 +105,20 @@ dev.off()
 
 {
   
-  fgm_EA <- read.csv ("fgm_all_EA.csv", header=TRUE)
+  fgc_EA <- read.csv ("fgc_all_EA.csv", header=TRUE)
   cl_EA <- read.csv ("cl_all_EA.csv", header=TRUE)
   ex_EA <- read.csv ("ex_all_EA.csv", header=TRUE)
   infib_EA <- read.csv ("infib_all_EA.csv", header=TRUE)
-  mgm_EA <- read.csv ("mgm_mg_EA.csv", header=TRUE)
+  mgc_EA <- read.csv ("mgc_mg_EA.csv", header=TRUE)
   circum_EA <- read.csv ("circum_mg_EA.csv", header=TRUE)
   super_EA <- read.csv ("super_all_EA.csv", header=TRUE)
   
   
-  ### FGM ###
+  ### FGC ###
   
   var_order <- c ("caste","class","bride_pr","int_agric","ext_agric","past","patrilin","patriloc","sex_norms","dist")
   names <- c ("castes","classes","bride-price","inten. agric.","exten. agric.","pastoralism","patrilineality","patrilocality","sex norms","co-wives separate")
-  FGM_EA <- ggplot(fgm_EA,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="blue") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="blue") + ggtitle("a") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
+  FGC_EA <- ggplot(fgc_EA,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="blue") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="blue") + ggtitle("a") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### clit ###
   
@@ -136,11 +136,11 @@ dev.off()
   names <- c ("castes","classes","bride-price","pastoralism","patrilineality","patrilocality","sex norms","co-wives separate")
   inf_EA <- ggplot(infib_EA,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="dodgerblue4") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="dodgerblue4") + ggtitle("d") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
-  ### MGM ###
+  ### MGC ###
   
   var_order <- c ("high_gods","caste","states","chiefdoms","bride_pr","int_agric","ext_agric","past","patrilin","patriloc","segr_adol","dist")
   names <- c ("high gods","castes","states","chiefdoms","bride-price","inten. agric.","exten. agric.","pastoralism","patrilineality","patrilocality","male segregation","co-wives separate")
-  MGM_EA <- ggplot(mgm_EA,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="red1") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="red1") + ggtitle("e") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
+  MGC_EA <- ggplot(mgc_EA,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="red1") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="red1") + ggtitle("e") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### cir ###
   
@@ -157,7 +157,7 @@ dev.off()
   
   # combine in a multiple plot
   
-  ggarrange(FGM_EA,clit_EA,exc_EA,inf_EA,MGM_EA,cir_EA,sup_EA, 
+  ggarrange(FGC_EA,clit_EA,exc_EA,inf_EA,MGC_EA,cir_EA,sup_EA, 
             ncol=4, 
             nrow=2,
             common.legend=FALSE
@@ -166,24 +166,24 @@ dev.off()
 }
 
 
-### Supplementary Fig 8 ###
+### Extended Data Fig 3 ###
 
 {
   
-  fgm_SCCS <- read.csv ("fgm_all_SCCS.csv", header=TRUE)
+  fgc_SCCS <- read.csv ("fgc_all_SCCS.csv", header=TRUE)
   cl_SCCS <- read.csv ("cl_all_SCCS.csv", header=TRUE)
   ex_SCCS <- read.csv ("ex_all_SCCS.csv", header=TRUE)
   infib_SCCS <- read.csv ("infib_all_SCCS.csv", header=TRUE)
-  mgm_SCCS <- read.csv ("mgm_m5_SCCS.csv", header=TRUE)
+  mgc_SCCS <- read.csv ("mgc_m5_SCCS.csv", header=TRUE)
   circum_SCCS <- read.csv ("circum_all_SCCS.csv", header=TRUE)
   super_SCCS <- read.csv ("super_m1_SCCS.csv", header=TRUE)
   
   
-  ### FGM ###
+  ### FGC ###
   
   var_order <- c ("caste","bride_pr","past","patrilin","patriloc","sex_norms","ext_aff","dist")
   names <- c ("castes","bride-price","pastoralism","patrilineality","patrilocality","sex norms","extramarital sex","co-wives separate")
-  FGM_SCCS <- ggplot(fgm_SCCS,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="blue") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="blue") + ggtitle("a") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
+  FGM_SCCS <- ggplot(fgc_SCCS,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="blue") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="blue") + ggtitle("a") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### clit ###
   
@@ -203,11 +203,11 @@ dev.off()
   names <- c ("castes","bride-price","pastoralism","patrilineality","patrilocality","sex norms","extramarital sex","co-wives separate")
   inf_SCCS <- ggplot(infib_SCCS,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="dodgerblue4") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="dodgerblue4") + ggtitle("d") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
-  ### MGM ###
+  ### MGC ###
   
   var_order <- c ("caste","chiefdoms","patrilin","patriloc","segr_adol","ext_aff","dist")
   names <- c ("castes","chiefdoms","patrilineality","patrilocality","male segregation","extramarital sex","co-wives separate")
-  MGM_SCCS <- ggplot(mgm_SCCS,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="red1") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="red1") + ggtitle("e") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
+  MGM_SCCS <- ggplot(mgc_SCCS,aes(x=var,y=b_est,fill=factor(mod),shape=factor(mod))) + geom_point(position=position_dodge(-0.65), size=2, color="red1") + scale_fill_discrete(name="var") + geom_errorbar(aes(ymin=lci, ymax=uci),position=position_dodge(-0.65),width=0,color="red1") + ggtitle("e") + geom_hline(yintercept=0,linetype="dashed") + theme_classic(base_size=12) + coord_flip() + guides(fill=FALSE) + theme(legend.title=element_blank(), legend.position="none", axis.title.x=element_blank(), axis.title.y=element_blank(), axis.text.x=element_text(size=12), axis.text.y=element_text(size=12), plot.title=element_text(size=14,face="bold"), plot.margin=unit(c(0.75,0.25,0.75,0.25),"cm")) + scale_x_discrete(limits=var_order, labels=names)
   
   ### cir ###
   
@@ -224,7 +224,7 @@ dev.off()
   
   # combine in a multiple plot
   
-  ggarrange(FGM_SCCS,clit_SCCS,exc_SCCS,inf_SCCS,MGM_SCCS,cir_SCCS,sup_SCCS, 
+  ggarrange(FGC_SCCS,clit_SCCS,exc_SCCS,inf_SCCS,MGC_SCCS,cir_SCCS,sup_SCCS, 
             ncol=4, 
             nrow=2,
             common.legend=FALSE
