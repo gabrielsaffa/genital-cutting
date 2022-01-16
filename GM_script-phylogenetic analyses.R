@@ -32,9 +32,9 @@ write.tree (GM_EA_tree, "SPT.EA.tre") # write the reduced tree
 ###########################
 ### phylogenetic signal ###
 
-# FGM
+# FGC
 
-GM_EA_phylo_sig <- phylo.d (GM_EA_data, GM_EA_tree, names.col=pop, binvar=FGM, permut=1000)
+GM_EA_phylo_sig <- phylo.d (GM_EA_data, GM_EA_tree, names.col=pop, binvar=FGC, permut=1000)
 GM_EA_phylo_sig
 
 # clitoridectomy
@@ -52,9 +52,9 @@ GM_EA_phylo_sig
 GM_EA_phylo_sig <- phylo.d (GM_EA_data, GM_EA_tree, names.col=pop, binvar=inf, permut=1000) 
 GM_EA_phylo_sig
 
-# MGM 
+# MGC 
 
-GM_EA_phylo_sig <- phylo.d (GM_EA_data, GM_EA_tree, names.col=pop, binvar=MGM, permut=1000) 
+GM_EA_phylo_sig <- phylo.d (GM_EA_data, GM_EA_tree, names.col=pop, binvar=MGC, permut=1000) 
 GM_EA_phylo_sig
 
 # circumcision 
@@ -124,14 +124,14 @@ GM_EA_phylo_sig
 ### NOTE: only the EA sample was used for this type of analysis
 
 
-### FGM ###
+### FGC ###
 
-FGM <- setNames (GM_EA_data[,3], rownames(GM_EA_data))
-sim_FGM <- make.simmap (GM_EA_tree, FGM, model="ARD", Q="empirical", nsim=1000, pi=c(1,0))
-sim_FGM_pd <- summary (sim_FGM)
+FGC <- setNames (GM_EA_data[,3], rownames(GM_EA_data))
+sim_FGC <- make.simmap (GM_EA_tree, FGC, model="ARD", Q="empirical", nsim=1000, pi=c(1,0))
+sim_FGC_pd <- summary (sim_FGC)
 
-cols <- setNames (c("gray85","blue"), levels(as.factor(FGM)))
-plot (sim_FGM_pd,
+cols <- setNames (c("gray85","blue"), levels(as.factor(FGC)))
+plot (sim_FGC_pd,
       offset=1.0,
       fsize=0.2,
       lwd=1,
@@ -228,13 +228,13 @@ add.simmap.legend (x=0,
 )
 
 
-### MGM ###
+### MGC ###
 
-MGM <- setNames (GM_EA_data[,7], rownames(GM_EA_data))
-sim_MGM <- make.simmap (GM_EA_tree, MGM, model="ARD", Q="empirical", nsim=1000, pi=c(1,0))
-sim_MGM_pd <- summary (sim_MGM)
+MGC <- setNames (GM_EA_data[,7], rownames(GM_EA_data))
+sim_MGC <- make.simmap (GM_EA_tree, MGC, model="ARD", Q="empirical", nsim=1000, pi=c(1,0))
+sim_MGC_pd <- summary (sim_MGC)
 
-cols <- setNames (c("gray85","red1"), levels(as.factor(MGM)))
+cols <- setNames (c("gray85","red1"), levels(as.factor(MGC)))
 plot (sim_MGM_pd,
       offset=1.0,
       fsize=0.2,
@@ -317,10 +317,10 @@ GM_EA_data_phylo <- GM_EA_data[GM_EA_tree$tip.label, ] # match the data with the
 
 # assign row names to the selected variables
 
-### FGM ~ co-wives separate ###
+### FGC ~ co-wives separate ###
 
-FGM <- GM_EA_data_phylo$FGM
-names (FGM) <- row.names (GM_EA_data_phylo) 
+FGC <- GM_EA_data_phylo$FGC
+names (FGC) <- row.names (GM_EA_data_phylo) 
 
 dist <- GM_EA_data_phylo$dist
 names (dist) <- row.names (GM_EA_data_phylo)
@@ -328,9 +328,9 @@ names (dist) <- row.names (GM_EA_data_phylo)
 # ARD model was used based on ancestral state reconstructions
 # perform all three types of test for each pair of selected variables
 
-fit1 <- fitPagel (GM_EA_tree, x=FGM, y=dist, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_EA_tree, x=FGM, y=dist, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_EA_tree, x=FGM, y=dist, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_EA_tree, x=FGC, y=dist, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_EA_tree, x=FGC, y=dist, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_EA_tree, x=FGC, y=dist, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -359,14 +359,14 @@ plot.fitPagel (fit2, lwd.by.rate=TRUE) # plot the selected model(s)
 plot.fitPagel (fit1, lwd.by.rate=TRUE)
 
 
-### FGM ~ sex norms ###
+### FGC ~ sex norms ###
 
 sex_norms <- GM_EA_data_phylo$sex_norms
 names (sex_norms) <- row.names (GM_EA_data_phylo)
 
-fit1 <- fitPagel (GM_EA_tree, x=FGM, y=sex_norms, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_EA_tree, x=FGM, y=sex_norms, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_EA_tree, x=FGM, y=sex_norms, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_EA_tree, x=FGC, y=sex_norms, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_EA_tree, x=FGC, y=sex_norms, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_EA_tree, x=FGC, y=sex_norms, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -395,14 +395,14 @@ plot.fitPagel (fit3, lwd.by.rate=TRUE)
 plot.fitPagel (fit1, lwd.by.rate=TRUE)
 
 
-### FGM ~ MGM ###
+### FGC ~ MGC ###
 
-MGM <- GM_EA_data_phylo$MGM
-names (MGM) <- row.names (GM_EA_data_phylo)
+MGC <- GM_EA_data_phylo$MGC
+names (MGC) <- row.names (GM_EA_data_phylo)
 
-fit1 <- fitPagel (GM_EA_tree, x=FGM, y=MGM, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_EA_tree, x=FGM, y=MGM, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_EA_tree, x=FGM, y=MGM, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_EA_tree, x=FGC, y=MGC, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_EA_tree, x=FGC, y=MGC, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_EA_tree, x=FGC, y=MGC, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -430,14 +430,14 @@ aic_all
 plot.fitPagel (fit1, lwd.by.rate=TRUE)
 
 
-### FGM ~ bride-price ###
+### FGC ~ bride-price ###
 
 bride_pr <- GM_EA_data_phylo$bride_pr
 names (bride_pr) <- row.names (GM_EA_data_phylo)
 
-fit1 <- fitPagel (GM_EA_tree, x=FGM, y=bride_pr, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_EA_tree, x=FGM, y=bride_pr, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_EA_tree, x=FGM, y=bride_pr, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_EA_tree, x=FGC, y=bride_pr, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_EA_tree, x=FGC, y=bride_pr, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_EA_tree, x=FGC, y=bride_pr, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -467,14 +467,14 @@ plot.fitPagel (fit2, lwd.by.rate=TRUE)
 plot.fitPagel (fit3, lwd.by.rate=TRUE)
 
 
-### FGM ~ castes ###
+### FGC ~ castes ###
 
 castes <- GM_EA_data_phylo$caste
 names (castes) <- row.names (GM_EA_data_phylo)
 
-fit1 <- fitPagel (GM_EA_tree, x=FGM, y=castes, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_EA_tree, x=FGM, y=castes, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_EA_tree, x=FGM, y=castes, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_EA_tree, x=FGC, y=castes, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_EA_tree, x=FGC, y=castes, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_EA_tree, x=FGC, y=castes, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -758,7 +758,7 @@ plot.fitPagel (fit2, lwd.by.rate=TRUE)
 plot.fitPagel (fit3, lwd.by.rate=TRUE)
 
 
-### clit ~ classes ###
+### exc ~ classes ###
 
 fit1 <- fitPagel (GM_EA_tree, x=exc, y=class, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
 fit2 <- fitPagel (GM_EA_tree, x=exc, y=class, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
@@ -970,14 +970,14 @@ plot.fitPagel (fit2, lwd.by.rate=TRUE)
 plot.fitPagel (fit3, lwd.by.rate=TRUE)
 
 
-### MGM ~ dist ###
+### MGC ~ dist ###
 
-MGM <- GM_EA_data_phylo$MGM
-names (MGM) <- row.names (GM_EA_data_phylo)
+MGC <- GM_EA_data_phylo$MGC
+names (MGC) <- row.names (GM_EA_data_phylo)
 
-fit1 <- fitPagel (GM_EA_tree, x=MGM, y=dist, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_EA_tree, x=MGM, y=dist, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_EA_tree, x=MGM, y=dist, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_EA_tree, x=MGC, y=dist, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_EA_tree, x=MGC, y=dist, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_EA_tree, x=MGC, y=dist, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -1006,11 +1006,11 @@ plot.fitPagel (fit1, lwd.by.rate=TRUE)
 plot.fitPagel (fit2, lwd.by.rate=TRUE)
 
 
-### MGM ~ patrilin ###
+### MGC ~ patrilin ###
 
-fit1 <- fitPagel (GM_EA_tree, x=MGM, y=patrilin, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_EA_tree, x=MGM, y=patrilin, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_EA_tree, x=MGM, y=patrilin, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_EA_tree, x=MGC, y=patrilin, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_EA_tree, x=MGC, y=patrilin, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_EA_tree, x=MGC, y=patrilin, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -1039,11 +1039,11 @@ plot.fitPagel (fit3, lwd.by.rate=TRUE)
 plot.fitPagel (fit1, lwd.by.rate=TRUE)
 
 
-### MGM ~ castes ###
+### MGC ~ castes ###
 
-fit1 <- fitPagel (GM_EA_tree, x=MGM, y=castes, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_EA_tree, x=MGM, y=castes, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_EA_tree, x=MGM, y=castes, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_EA_tree, x=MGC, y=castes, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_EA_tree, x=MGC, y=castes, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_EA_tree, x=MGC, y=castes, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -1072,14 +1072,14 @@ plot.fitPagel (fit1, lwd.by.rate=TRUE)
 plot.fitPagel (fit2, lwd.by.rate=TRUE)
 
 
-### MGM ~ high gods ###
+### MGC ~ high gods ###
 
 high_gods <- GM_EA_data_phylo$high_gods
 names (high_gods) <- row.names (GM_EA_data_phylo)
 
-fit1 <- fitPagel (GM_EA_tree, x=MGM, y=high_gods, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_EA_tree, x=MGM, y=high_gods, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_EA_tree, x=MGM, y=high_gods, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_EA_tree, x=MGC, y=high_gods, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_EA_tree, x=MGC, y=high_gods, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_EA_tree, x=MGC, y=high_gods, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -1358,9 +1358,9 @@ GM_SCCS_data <- read.csv ("GM_SCCS_imputed.csv", header=TRUE)
 GM_SCCS_tree <- read.tree ("SPT.SCCS.tre")
 
 
-# FGM
+# FGC
 
-GM_SCCS_phylo_sig <- phylo.d (GM_SCCS_data, GM_SCCS_tree, names.col=pop, binvar=FGM, permut=1000)
+GM_SCCS_phylo_sig <- phylo.d (GM_SCCS_data, GM_SCCS_tree, names.col=pop, binvar=FGC, permut=1000)
 GM_SCCS_phylo_sig
 
 # clitoridectomy
@@ -1378,9 +1378,9 @@ GM_SCCS_phylo_sig
 GM_SCCS_phylo_sig <- phylo.d (GM_SCCS_data, GM_SCCS_tree, names.col=pop, binvar=inf, permut=1000) 
 GM_SCCS_phylo_sig
 
-# MGM
+# MGC
 
-GM_SCCS_phylo_sig <- phylo.d (GM_SCCS_data, GM_SCCS_tree, names.col=pop, binvar=MGM, permut=1000) 
+GM_SCCS_phylo_sig <- phylo.d (GM_SCCS_data, GM_SCCS_tree, names.col=pop, binvar=MGC, permut=1000) 
 GM_SCCS_phylo_sig
 
 # circumcision
@@ -1456,17 +1456,17 @@ GM_SCCS_data$dist_bin <- ifelse (GM_SCCS_data$dist==4,1,0) # first make a binary
 GM_SCCS_data_phylo <- GM_SCCS_data[GM_SCCS_tree$tip.label, ] # match the data with the phylogeny
 
 
-### FGM ~ co-wives separate ###
+### FGC ~ co-wives separate ###
 
-FGM <- GM_SCCS_data_phylo$FGM
-names (FGM) <- row.names (GM_SCCS_data_phylo) 
+FGC <- GM_SCCS_data_phylo$FGC
+names (FGC) <- row.names (GM_SCCS_data_phylo) 
 
 dist <- GM_SCCS_data_phylo$dist_bin
 names (dist) <- row.names (GM_SCCS_data_phylo)
 
-fit1 <- fitPagel (GM_SCCS_tree, x=FGM, y=dist, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_SCCS_tree, x=FGM, y=dist, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=dist, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_SCCS_tree, x=FGC, y=dist, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_SCCS_tree, x=FGC, y=dist, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_SCCS_tree, x=FGC, y=dist, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -1495,14 +1495,14 @@ plot.fitPagel (fit2, lwd.by.rate=TRUE)
 plot.fitPagel (fit1, lwd.by.rate=TRUE)
 
 
-### FGM ~ MGM ###
+### FGC ~ MGC ###
 
-MGM <- GM_SCCS_data_phylo$MGM
-names (MGM) <- row.names (GM_SCCS_data_phylo) 
+MGC <- GM_SCCS_data_phylo$MGC
+names (MGC) <- row.names (GM_SCCS_data_phylo) 
 
-fit1 <- fitPagel (GM_SCCS_tree, x=FGM, y=MGM, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_SCCS_tree, x=FGM, y=MGM, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=MGM, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_SCCS_tree, x=FGC, y=MGC, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_SCCS_tree, x=FGC, y=MGC, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_SCCS_tree, x=FGC, y=MGC, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -1530,14 +1530,14 @@ aic_all
 plot.fitPagel (fit2, lwd.by.rate=TRUE)
 
 
-### FGM ~ bride-price ###
+### FGC ~ bride-price ###
 
 bride_pr <- GM_SCCS_data_phylo$bride_pr
 names (bride_pr) <- row.names (GM_SCCS_data_phylo) 
 
-fit1 <- fitPagel (GM_SCCS_tree, x=FGM, y=bride_pr, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_SCCS_tree, x=FGM, y=bride_pr, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=bride_pr, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_SCCS_tree, x=FGC, y=bride_pr, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_SCCS_tree, x=FGC, y=bride_pr, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_SCCS_tree, x=FGC, y=bride_pr, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -1566,14 +1566,14 @@ plot.fitPagel (fit2, lwd.by.rate=TRUE)
 plot.fitPagel (fit1, lwd.by.rate=TRUE)
 
 
-### FGM ~ castes ###
+### FGC ~ castes ###
 
 castes <- GM_SCCS_data_phylo$caste
 names (castes) <- row.names (GM_SCCS_data_phylo) 
 
-fit1 <- fitPagel (GM_SCCS_tree, x=FGM, y=castes, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_SCCS_tree, x=FGM, y=castes, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=castes, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_SCCS_tree, x=FGC, y=castes, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_SCCS_tree, x=FGC, y=castes, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_SCCS_tree, x=FGC, y=castes, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -1602,14 +1602,14 @@ plot.fitPagel (fit2, lwd.by.rate=TRUE)
 plot.fitPagel (fit1, lwd.by.rate=TRUE)
 
 
-### FGM ~ scars-female ###
+### FGC ~ scars-female ###
 
 scars_f <- GM_SCCS_data_phylo$scars_f
 names (scars_f) <- row.names (GM_SCCS_data_phylo) 
 
-fit1 <- fitPagel (GM_SCCS_tree, x=FGM, y=scars_f, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_SCCS_tree, x=FGM, y=scars_f, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_SCCS_tree, x=FGM, y=scars_f, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_SCCS_tree, x=FGC, y=scars_f, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_SCCS_tree, x=FGC, y=scars_f, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_SCCS_tree, x=FGC, y=scars_f, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -1919,7 +1919,7 @@ plot.fitPagel (fit2, lwd.by.rate=TRUE)
 plot.fitPagel (fit3, lwd.by.rate=TRUE)
 
 
-### clit ~ classes ###
+### exc ~ classes ###
 
 fit1 <- fitPagel (GM_SCCS_tree, x=exc, y=class, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
 fit2 <- fitPagel (GM_SCCS_tree, x=exc, y=class, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
@@ -2130,14 +2130,14 @@ plot.fitPagel (fit3, lwd.by.rate=TRUE)
 plot.fitPagel (fit2, lwd.by.rate=TRUE)
 
 
-### MGM ~ dist ###
+### MGC ~ dist ###
 
-MGM <- GM_SCCS_data_phylo$MGM
-names (MGM) <- row.names (GM_SCCS_data_phylo) 
+MGC <- GM_SCCS_data_phylo$MGC
+names (MGC) <- row.names (GM_SCCS_data_phylo) 
 
-fit1 <- fitPagel (GM_SCCS_tree, x=MGM, y=dist, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_SCCS_tree, x=MGM, y=dist, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_SCCS_tree, x=MGM, y=dist, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_SCCS_tree, x=MGC, y=dist, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_SCCS_tree, x=MGC, y=dist, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_SCCS_tree, x=MGC, y=dist, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -2166,11 +2166,11 @@ plot.fitPagel (fit1, lwd.by.rate=TRUE)
 plot.fitPagel (fit2, lwd.by.rate=TRUE)
 
 
-### MGM ~ pattrilin ###
+### MGC ~ pattrilin ###
 
-fit1 <- fitPagel (GM_SCCS_tree, x=MGM, y=patrilin, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_SCCS_tree, x=MGM, y=patrilin, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_SCCS_tree, x=MGM, y=patrilin, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_SCCS_tree, x=MGC, y=patrilin, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_SCCS_tree, x=MGC, y=patrilin, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_SCCS_tree, x=MGC, y=patrilin, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -2198,11 +2198,11 @@ aic_all
 plot.fitPagel (fit1, lwd.by.rate=TRUE)
 
 
-### MGM ~ castes ###
+### MGC ~ castes ###
 
-fit1 <- fitPagel (GM_SCCS_tree, x=MGM, y=castes, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_SCCS_tree, x=MGM, y=castes, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_SCCS_tree, x=MGM, y=castes, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_SCCS_tree, x=MGC, y=castes, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_SCCS_tree, x=MGC, y=castes, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_SCCS_tree, x=MGC, y=castes, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
@@ -2231,14 +2231,14 @@ plot.fitPagel (fit2, lwd.by.rate=TRUE)
 plot.fitPagel (fit1, lwd.by.rate=TRUE)
 
 
-### MGM ~ scars-m ###
+### MGC ~ scars-m ###
 
 scars_m <- GM_SCCS_data_phylo$scars_m
 names (scars_m) <- row.names (GM_SCCS_data_phylo) 
 
-fit1 <- fitPagel (GM_SCCS_tree, x=MGM, y=scars_m, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
-fit2 <- fitPagel (GM_SCCS_tree, x=MGM, y=scars_m, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
-fit3 <- fitPagel (GM_SCCS_tree, x=MGM, y=scars_m, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
+fit1 <- fitPagel (GM_SCCS_tree, x=MGC, y=scars_m, model="ARD") # transition rate in 'x' depends on 'y' and vice versa
+fit2 <- fitPagel (GM_SCCS_tree, x=MGC, y=scars_m, model="ARD", dep.var="x") # transition rate in 'x' depends on 'y' but NOT vice versa
+fit3 <- fitPagel (GM_SCCS_tree, x=MGC, y=scars_m, model="ARD", dep.var="y") # transition rate in 'y' depends on 'x' but NOT vice versa
 
 
 ### get likelihoods, AIC, delta AIC and AIC weights
