@@ -1,5 +1,5 @@
 ###############################################################################################################################
-### R script  for: Global phylogenetic analysis reveals multiple origins and socio-ecological correlates of genital cutting ###
+### R script  for: Global phylogenetic analysis reveals multiple origins and correlates of genital cutting ###
 ###############################################################################################################################
 
 ### ancestral state reconstructions of GM for individual language families ###
